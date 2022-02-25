@@ -319,7 +319,7 @@ async def cbcmnds(_, query: CallbackQuery):
 Powered by Resso Music !""",
         reply_markup=InlineKeyboardMarkup(
             [
-              [InlineKeyboardButton("Menu Buttons", switch_inline_query_current_chat="")],
+              [InlineKeyboardButton("Menu Buttons", callback_data="cbmenu")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -336,7 +336,7 @@ This bot helps you to play music, to search music from youtube and to download m
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Contact Owner", url=f"https://t.me/iSmartAnkit")],
+            [InlineKeyboardButton("Need Help", callback_data="cbhelp")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -353,13 +353,32 @@ After you played your song some buttons will be comes to manage your music playi
 • ‣‣ - Skip Music
 • II - Pause Music
 
-**Notes : Only admins use this.**""",
+**Note : Only admins use this.**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnd")]]
         ),
     )
+@Client.on_callback_query(filters.regex("cbhelp"))
+async def cbhelp(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Need Help 💡**
 
+**[Resso Music Bot](https://t.me/RessoMusicBot)**
+
+• Bot Managed By 
+- @iSmartAnkit
+
+• Special Thanks
+- @Op_Aayu
+
+**Note : Some kangers thinking that this bot is deployed from their repo. Fuck off bruh !**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Support", url=f"https://t.me/CreatorPavanChat")],
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+        ),
+    )
 @Client.on_callback_query(filters.regex("cbguide"))
 async def cbguide(_, query: CallbackQuery):
     await query.edit_message_text(
