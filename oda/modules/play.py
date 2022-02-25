@@ -123,6 +123,173 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("temp.png")
     os.remove("background.png")
 
+def others_markup(videoid, user_id):
+    buttons = [
+        [
+            InlineKeyboardButton(text="▷", callback_data=f"resumevc2"),
+            InlineKeyboardButton(text="II", callback_data=f"pausevc2"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc2"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopvc2"),
+        ],
+        [
+            InlineKeyboardButton(text="➕ ᴀᴅᴅ ʏᴏᴜʀ ʟɪsᴛ​", callback_data=f'playlist {videoid}|{user_id}'),
+            InlineKeyboardButton(text="➕ ᴀᴅᴅ ɢʀᴏᴜᴘ ʟɪsᴛ​", callback_data=f'group_playlist {videoid}|{user_id}'),
+        ],
+        [
+            InlineKeyboardButton(
+                text="⇩ ᴜɴᴅᴜʜ ᴀᴜᴅɪᴏ", callback_data=f"gets audio|{videoid}|{user_id}"
+            ),
+            InlineKeyboardButton(
+                text="⇩ ᴜɴᴅᴜʜ ᴠɪᴅᴇᴏ", callback_data=f"gets video|{videoid}|{user_id}"
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="⪻", callback_data=f"goback {videoid}|{user_id}"
+            ),
+            InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f"close2"),
+        ],
+    ]
+    return buttons
+
+
+play_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+        ],
+    ]
+)
+
+
+@Client.on_callback_query(filters.regex("skipvc"))
+async def skipvc(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            """
+Only admin with manage voice chat permission can do this.
+""",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    chat_title = CallbackQuery.message.chat.title
+    if await is_active_chat(chat_id):
+            user_id = CallbackQuery.from_user.id
+            await remove_active_chat(chat_id)
+            user_name = CallbackQuery.from_user.first_name
+            rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+            await CallbackQuery.answer()
+            await CallbackQuery.message.reply(
+                f"""
+**Skip Button Used By** {rpk}
+\• No more songs in Queue
+`Leaving Voice Chat..`
+"""
+            )
+            await calls.pytgcalls.leave_group_call(chat_id)
+            return
+            await CallbackQuery.answer("Voice Chat Skip.!", show_alert=True)     
+
+@Client.on_callback_query(filters.regex("pausevc"))
+async def pausevc(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        if await is_music_playing(chat_id):
+            await music_off(chat_id)
+            await calls.pytgcalls.pause_stream(chat_id)
+            await CallbackQuery.answer("Voicechat Paused Successfully.", show_alert=True)
+            user_id = CallbackQuery.from_user.id
+            user_name = CallbackQuery.from_user.first_name
+            rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+            await CallbackQuery.message.reply(
+                f"**• Song paused by {rpk}**/n**, Use ▷ for resume.**", reply_markup=play_keyboard
+            )
+            await CallbackQuery.message.delete()
+        else:
+            await CallbackQuery.answer(f"Nothing is playing on voice chat!", show_alert=True)
+            return
+    else:
+        await CallbackQuery.answer(f"Nothing is playing in on voice chat!", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("resumevc"))
+async def resumevc(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            """
+Only admin with manage voice chat permission can do this.
+""",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        if await is_music_playing(chat_id):
+            await CallbackQuery.answer(
+                "Nothing is paused in the voice chat.",
+                show_alert=True,
+            )
+            return
+        else:
+            await music_on(chat_id)
+            await calls.pytgcalls.resume_stream(chat_id)
+            await CallbackQuery.answer("Music resumed successfully.", show_alert=True)
+            user_id = CallbackQuery.from_user.id
+            user_name = CallbackQuery.from_user.first_name
+            rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+            await CallbackQuery.message.reply(
+                f"**• Music resumed by {rpk}**/n**, Use II for pause.**", reply_markup=play_keyboard
+            )
+            await CallbackQuery.message.delete()
+    else:
+        await CallbackQuery.answer(f"Nothing is playing.", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("stopvc"))
+async def stopvc(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
+        try:
+            await calls.pytgcalls.leave_group_call(chat_id)
+        except Exception:
+            pass
+        await remove_active_chat(chat_id)
+        await CallbackQuery.answer("Music stream ended.", show_alert=True)
+        user_id = CallbackQuery.from_user.id
+        user_name = CallbackQuery.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        await CallbackQuery.message.reply(f"**• Music successfully stopped by {rpk}!**")
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 
 
 @Client.on_callback_query(filters.regex(pattern=r"^(cls)$"))
@@ -253,11 +420,16 @@ async def play(_, message: Message):
         views = "Locally added"
 
         keyboard = InlineKeyboardMarkup(
-            [
-                
-                [InlineKeyboardButton(text="ꜱᴇᴀʀᴄʜ", switch_inline_query_current_chat=""),],
-            ]
-        )
+    [
+        [
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+        ],
+        
+    ]
+)
 
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
@@ -288,11 +460,16 @@ async def play(_, message: Message):
                 secmul *= 60
 
             keyboard = InlineKeyboardMarkup(
-                [
-                    
-                    [InlineKeyboardButton(text="ꜱᴇᴀʀᴄʜ", switch_inline_query_current_chat="")],
-                ]
-            )
+    [
+        [
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+        ],
+        
+    ]
+)
 
         except Exception as e:
             title = "NaN"
@@ -414,11 +591,16 @@ async def play(_, message: Message):
             return
 
         keyboard = InlineKeyboardMarkup(
-            [
-                
-                [InlineKeyboardButton(text="ꜱᴇᴀʀᴄʜ", switch_inline_query_current_chat="")],
-            ]
-        )
+    [
+        [
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+        ],
+        
+    ]
+)
 
         if (dur / 60) > DURATION_LIMIT:
             await lel.edit(
@@ -514,7 +696,7 @@ async def play(_, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
+                ""*Error Joining Voice Chat. Make sure Voice Chat is Enabled.**"
             )
 
         await music_on(message.chat.id)
