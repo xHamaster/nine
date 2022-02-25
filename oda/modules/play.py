@@ -292,19 +292,100 @@ async def stopvc(_, CallbackQuery):
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
 
-@Client.on_callback_query(filters.regex("cbsetting"))
-async def cbsetting(_, query: CallbackQuery):
+@Client.on_callback_query(filters.regex("cbcmnds"))
+async def cbcmnds(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**ᴘᴀᴠᴀɴ ꜱᴇᴛᴛɪɴɢꜱ ᴄᴏᴍᴍᴀɴᴅꜱ :**
-» /pause - ꜰᴏʀ ᴘᴀᴜꜱɪɴɢ ꜱᴛʀᴇᴀᴍɪɴɢ. 
-» /resume - ꜰᴏʀ ʀᴇꜱᴜᴍᴇ ꜱᴛʀᴇᴀᴍɪɴɢ. 
-» /skip - ꜰᴏʀ ꜱᴋɪᴘᴘɪɴɢ ᴄᴜʀʀᴇɴᴛ ꜱᴏɴɢ ᴀɴᴅ ᴘʟᴀʏɪɴɢ ɴᴇxᴛ ꜱᴏɴɢ. 
-» /mute - ꜰᴏʀ ᴍᴜᴛᴜɪɴɢ ᴀꜱꜱɪꜱᴛᴀɴᴛ ɪɴ ᴠᴄ. 
-» /unmute - ꜰᴏʀ ᴜɴᴍᴜᴛᴇ ᴀꜱꜱɪꜱᴛᴀɴᴛ ɪɴ ᴠᴄ. 
-» /end - ꜰᴏʀ ᴇɴᴅ ꜱᴛʀᴇᴀᴍɪɴɢ. 
-**© @TheCreatorPavan**""",
+        f"""**Resso Music Bot Commands 💡**
+
+
+• /play (song name) 
+- For playing music
+
+• /pause 
+- For pausing music
+
+• /resum 
+- For resuming music
+
+• /skip 
+- For skipping current song
+
+• /search (song name) 
+- For searching music
+
+• /lyrics (song name) 
+- For song lyrics
+
+• /song (song name)
+- For download music
+
+
+Powered by Resso !""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbcmds")]]
+            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbabout"))
+async def cbabout(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**About Resso Music Bot 💡**
+
+Resso Music Bot is the bot designed by official resso team for playing a high quality and unbreakable music in your groups voice chat.
+
+This bot helps you to play music, to search music from youtube and to download music from youtube server and many more features related to telegram voice chat feature.
+
+**Thanks !**""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbguide"))
+async def cbguide(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Read Basic Guide Carefully 💡**
+
+• First add this bot in your group
+
+• Make a bot admin
+
+• Give needed admin permission
+
+• Type /reload in your group
+
+• Start your groups voice chat
+
+• Now play your song and enjoy !""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbhome"))
+async def cbhome(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Welcome there** 👋
+
+This is the resso music bot, a bot for playing high quality and unbreakable music in your groups voice chat.
+
+Just add me to your group and make a admin with needed admin permission to perform a right actions !
+
+Use the given buttons for more 📍""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "Commands", callback_data="cbcmnds")
+                    InlineKeyboardButton(
+                        "Commands", callback_data="cbabout")
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Commands", callback_data="cbguide")
+                ]
+                
+           ]
         ),
     )
 
