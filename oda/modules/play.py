@@ -316,7 +316,7 @@ async def cbcmnds(_, query: CallbackQuery):
 • /song (song name)
 - For download music
 
-Powered by Resso Music !""",
+Powered by **Resso Music** !""",
         reply_markup=InlineKeyboardMarkup(
             [
               [InlineKeyboardButton("Menu Buttons", callback_data="cbmenu")],
@@ -367,7 +367,7 @@ async def cbhelp(_, query: CallbackQuery):
 **[Resso Music Bot](https://t.me/RessoMusicBot)**
 
 **• Bot Managed By** 
-- #secret
+**- #secret**
 
 **• Special Thanks**
 **- #no_need**
@@ -375,7 +375,7 @@ async def cbhelp(_, query: CallbackQuery):
 **Note : Some kangers thinking this bot is deployed from their repo. Fuck off bruh, You really great !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Contact if Need Help", url=f"https://t.me/RessoSupportBot")],
+            [InlineKeyboardButton("Contact If really Need Help", url=f"https://t.me/RessoSupportBot")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
