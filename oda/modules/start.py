@@ -5,7 +5,7 @@ from pyrogram import Client, filters, __version__ as pyrover
 from pyrogram.errors import FloodWait
 from pytgcalls import (__version__ as pytover)
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatJoinRequest
-
+from oda.utils.filters import command
 
 from oda.config import BOT_USERNAME
 
