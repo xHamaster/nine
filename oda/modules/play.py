@@ -158,6 +158,7 @@ play_keyboard = InlineKeyboardMarkup(
         [
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
         ],
     ]
@@ -212,7 +213,7 @@ async def pausevc(_, CallbackQuery):
         if await is_music_playing(chat_id):
             await music_off(chat_id)
             await calls.pytgcalls.pause_stream(chat_id)
-            await CallbackQuery.answer("Voicechat Paused Successfully.", show_alert=True)
+            await CallbackQuery.answer("Music Paused Successfully.", show_alert=True)
             user_id = CallbackQuery.from_user.id
             user_name = CallbackQuery.from_user.first_name
             rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
@@ -328,7 +329,7 @@ async def play(_, message: Message):
             "🔴 __**Music player is turned off, ask the admin to turn on it on!**__"
         )
         return
-    lel = await message.reply("`Connecting resso server`")
+    lel = await message.reply("**Connecting resso server**")
 
     chid = message.chat.id
 
@@ -559,10 +560,10 @@ async def play(_, message: Message):
             return await lel.edit(
                 "`Give me song name !`"
             )
-        await lel.edit("`Connected successfully !`")
+        await lel.edit("**Connected successfully !**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("`Searching your song..`")
+        await lel.edit("**Searching your song..**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -669,7 +670,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"`{title[:50]}...`"
+                    f"**{title[:70]}...**"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
