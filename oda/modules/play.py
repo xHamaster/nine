@@ -313,16 +313,14 @@ async def cbcmnds(_, query: CallbackQuery):
 • /search (song name) 
 - For searching music
 
-• /lyrics (song name) 
-- For song lyrics
-
 • /song (song name)
 - For download music
 
-
-Powered by Resso !""",
+Powered by Resso Music !""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+            [
+              [InlineKeyboardButton("Menu Buttons", switch_inline_query_current_chat="")],
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
@@ -331,13 +329,34 @@ async def cbabout(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Resso Music Bot 💡**
 
-Resso Music Bot is the bot designed by official resso team for playing a high quality and unbreakable music in your groups voice chat.
+Resso Music Bot is the bot designed by official noobs team for playing a high quality and unbreakable music in your groups voice chat.
 
 This bot helps you to play music, to search music from youtube and to download music from youtube server and many more features related to telegram voice chat feature.
 
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+            [
+            [InlineKeyboardButton("Contact Owner", url=f"https://t.me/iSmartAnkit")],
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbmenu"))
+async def cbmenu(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**About Menu Buttons 💡**
+
+After you played your song some buttons will be comes to manage your music playing on voice chat. They are as follows :
+
+• ▷ - Resume Music
+• ▢  - End Music
+• ‣‣ - Skip Music
+• II - Pause Music
+
+**Notes : Only admins use this.**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnd")]]
         ),
     )
 
@@ -358,8 +377,7 @@ async def cbguide(_, query: CallbackQuery):
 
 • Now play your song and enjoy !""",
         reply_markup=InlineKeyboardMarkup(
-            [
-              [InlineKeyboardButton("Try Inline Search", switch_inline_query_current_chat="")],
+            [[InlineKeyboardButton("Try Inline Search", switch_inline_query_current_chat="")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -367,7 +385,7 @@ async def cbguide(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbhome"))
 async def cbhome(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**Welcome {message.from_user.mention()}** 👋
+        f"""**Welcome [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
 
 This is the resso music bot, a bot for playing high quality and unbreakable music in your groups voice chat.
 
