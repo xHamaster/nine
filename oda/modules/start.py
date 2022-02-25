@@ -26,7 +26,7 @@ Use the given buttons for more 📍""",
                     InlineKeyboardButton(
                         "Commands", callback_data="cbcmnds"),
                     InlineKeyboardButton(
-                        "Commands", callback_data="cbabout")
+                        "About", callback_data="cbabout")
                 ],
                 [
                     InlineKeyboardButton(
@@ -34,7 +34,7 @@ Use the given buttons for more 📍""",
                 ],
                 [
                     InlineKeyboardButton(
-                        "Add Bot in Your Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                        "✚ Add Bot in Your Group ✚", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ]
            ]
         ),
