@@ -364,8 +364,9 @@ async def cbguide(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cbhome"))
 async def cbhome(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**Welcome there** 👋
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/e594d98181c2f54b872fd.jpg",
+        caption=f"""**Welcome there** 👋
 
 This is the resso music bot, a bot for playing high quality and unbreakable music in your groups voice chat.
 
@@ -376,7 +377,7 @@ Use the given buttons for more 📍""",
             [
                 [
                     InlineKeyboardButton(
-                        "Commands", callback_data="cbcmnds")
+                        "Commands", callback_data="cbcmnds"),
                     InlineKeyboardButton(
                         "Commands", callback_data="cbabout")
                 ],
