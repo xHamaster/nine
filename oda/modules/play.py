@@ -329,7 +329,7 @@ async def cbabout(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Resso Music Bot 💡**
 
-Resso Music Bot is the bot designed by official noobs team for playing a high quality and unbreakable music in your groups voice chat.
+Resso Music Bot is the bot designed by some noobs team for playing a high quality and unbreakable music in your groups voice chat.
 
 This bot helps you to play music, to search music from youtube and to download music from youtube server and many more features related to telegram voice chat feature.
 
@@ -346,17 +346,17 @@ async def cbmenu(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Menu Buttons 💡**
 
-After you played your song some buttons will be comes to manage your music playing on voice chat. They are as follows :
+After you played your song some menu buttons will be comes to manage your music playing on voice chat. They are as follows :
 
 • ▷ - Resume Music
 • ▢  - End Music
 • ‣‣ - Skip Music
 • II - Pause Music
 
-**Note : Only admins use this.**""",
+**Note : Only admins use this buttons.**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnd")]]
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
         ),
     )
 @Client.on_callback_query(filters.regex("cbhelp"))
@@ -366,16 +366,16 @@ async def cbhelp(_, query: CallbackQuery):
 
 **[Resso Music Bot](https://t.me/RessoMusicBot)**
 
-• Bot Managed By 
-- @iSmartAnkit
+**• Bot Managed By** 
+- #secret
 
-• Special Thanks
-- @Op_Aayu
+**• Special Thanks**
+**- #no_need**
 
-**Note : Some kangers thinking that this bot is deployed from their repo. Fuck off bruh !**""",
+**Note : Some kangers thinking this bot is deployed from their repo. Fuck off bruh, You really great !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Support", url=f"https://t.me/CreatorPavanChat")],
+            [InlineKeyboardButton("Contact if Need Help", url=f"https://t.me/RessoSupportBot")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
