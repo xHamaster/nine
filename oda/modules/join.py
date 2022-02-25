@@ -49,8 +49,8 @@ async def addchannel(client, message):
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"❌ __**Assistant ({user.first_name}) can't join your group due to many join requests for userbot!**__\n‼️ Make sure the user is not banned in the group."
-            f"\n\n» `Manually add the {user.first_name} to your group`",
+            f"**Assistant ({user.first_name}) can't join your group due to many join requests for userbot!**\n‼️ Make sure the user is not banned in the group."
+            f"\n\n» `Manually add the @RessoMusicAssistant to your group`",
         )
         return
 
@@ -68,12 +68,12 @@ async def rem(USER, message):
     try:
         await USER.send_message(
             message.chat.id,
-            "✅ __Assistant successfully left chat__\n\n Join @UserLazyXBot",
+            "**Assistant successfully left chat ✓**",
         )
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text(
-            "❌ __**Assistant can't leave your group! probably waiting for floodwaits**__\n\n» Manually remove me from your group</b>"
+            "**Assistant can't leave your group! probably waiting for floodwaits**__\n\n» Manually remove me from your group</b>"
         )
 
         return
