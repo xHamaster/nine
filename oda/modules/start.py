@@ -18,13 +18,6 @@ async def start_(c: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
-                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                    )
-                ],
-                [InlineKeyboardButton("About", callback_data="user_guide")],
-                [
                     InlineKeyboardButton("Commands", callback_data="command_list"),
                 ],
                 [
@@ -37,7 +30,8 @@ async def start_(c: Client, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "Source Code", url="https://t.me/CreatorPavanChat"
+                        "➕ Add me to your Group ➕",
+                        url=f"https://t.me/RessoMusicBot?startgroup=true"
                     )
                 ],
             ]
