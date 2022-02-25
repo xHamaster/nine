@@ -8,23 +8,7 @@ from oda.utils.filters import command
 
 from oda.config import BOT_USERNAME
 
-@Client.on_callback_query(filters.regex(pattern=r"^(Ayuu)$"))
-async def ayuu(_, query: CallbackQuery):
-    from_user = query.from_user
-         return await query.answer(
-            "You don't have enough permissions to perform this action.\n"
-            + f"Hey Permission",
-            show_alert=True,
-        )
-@Client.on_callback_query(filters.regex("skipdot"))
-async def skipdot(_, CallbackQuery):
-    return await CallbackQuery.answer(
-            """
-You do not have the necessary permissions to perform this action
-• MANAGE VOICE CHAT
-""",
-            show_alert=True,
-        )
+
 @Client.on_message(
     command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
 )
