@@ -1,9 +1,6 @@
 
 import asyncio
 
-from datetime import datetime
-from sys import version_info
-from time import time
 from pyrogram import Client, filters, __version__ as pyrover
 from pyrogram.errors import FloodWait
 from pytgcalls import (__version__ as pytover)
