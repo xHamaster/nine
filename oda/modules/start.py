@@ -30,9 +30,12 @@ Use the given buttons for more 📍""",
                 ],
                 [
                     InlineKeyboardButton(
-                        "Commands", callback_data="cbguide")
+                        "Basic Guide", callback_data="cbguide")
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Add Bot in Your Group", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ]
-                
            ]
         ),
     )
