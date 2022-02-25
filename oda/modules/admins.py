@@ -66,16 +66,16 @@ async def pause(_, message: Message):
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
         return await message.reply_text(
-            "❌ __**I dont think if something's playing on voice chat**__"
+            "Nothing playing in voice chat."
         )
     elif not await is_music_playing(message.chat.id):
         return await message.reply_text(
-            "❌ __**I dont think if something's playing on voice chat**__"
+            "Nothing playing in voice chat."
         )
     await music_off(chat_id)
     await calls.pytgcalls.pause_stream(chat_id)
     await message.reply_text(
-        f"🎧 __**Voicechat Paused**__\n│\n╰ Music paused by {checking}!"
+        f"**Music paused by {checking}!**"
     )
 
 
@@ -93,17 +93,17 @@ async def resume(_, message: Message):
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
         return await message.reply_text(
-            "❌ __**I dont think if something's paused on voice chat**__"
+            "Nothing playing in voice chat."
         )
     elif await is_music_playing(chat_id):
         return await message.reply_text(
-            "❌ __**I dont think if something's paused on voice chat**__"
+            "Nothing playing in voice chat."
         )
     else:
         await music_on(chat_id)
         await calls.pytgcalls.resume_stream(chat_id)
         await message.reply_text(
-            f"🎧 __**Voicechat Resumed**__\n│\n╰ Music resumed by {checking}!"
+            f"**Music resumed by {checking}!**"
         )
 
 
@@ -127,11 +127,11 @@ async def stop(_, message: Message):
         await remove_active_chat(chat_id)
         await calls.pytgcalls.leave_group_call(chat_id)
         await message.reply_text(
-            f"🎧 __**Voicechat End/Stopped**__\n│\n╰ Music ended by {checking}!"
+            f"Music ended by {checking}!"
         )
     else:
         return await message.reply_text(
-            "❌ __**I dont think if something's playing on voice chat**__"
+            "Nothing playing in voice chat."
         )
 
 
@@ -149,13 +149,13 @@ async def skip(_, message: Message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     if not await is_active_chat(chat_id):
-        await message.reply_text("❌ __**Nothing's playing on voice chat**__")
+        await message.reply_text("Nothing playing in voice chat.")
     else:
         task_done(chat_id)
         if is_empty(chat_id):
             await remove_active_chat(chat_id)
             await message.reply_text(
-                "❌ __**No more music in Queue**__\n\n**»** `Leaving Voice Chat...`"
+                "**• Next song not available**\n\n**»** `Leaving Voice Chat...`"
             )
             await calls.pytgcalls.leave_group_call(chat_id)
             return
@@ -169,7 +169,7 @@ async def skip(_, message: Message):
                 ),
             )
             await message.reply_text(
-                f"⏭ __**Skipped to the next song.**__\n│\n╰ Music skipped by {checking}"
+                f"⏭ Song skipped by {checking}"
             )
 
 
