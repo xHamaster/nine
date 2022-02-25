@@ -9,32 +9,18 @@ from oda.utils.filters import command
 from oda.config import BOT_USERNAME
 
 
-@Client.on_message(
-    command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
-)
-async def start_(c: Client, message: Message):
-    await message.reply_text(
-        f"""💖 **Welcome {message.from_user.mention()}""",
-        reply_markup=InlineKeyboardMarkup(
+@Client.on_message(command("start") & filters.private & ~filters.edited)
+async def start_(client: Client, message: Message):
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/81671ed0156630ad5db4e.png",
+        caption=f"""What a fuck bro""",
+    reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Commands", callback_data="skipdot"),
-                ],
-                [
                     InlineKeyboardButton(
-                        "Official Group", callback_data="ayuu"
-                    ),
-                    InlineKeyboardButton(
-                        "Official Channel", url=f"https://t.me/creatorpavan"
-                    ),
-                ],
-                [
-                    InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
-                        url=f"https://t.me/RessoMusicBot?startgroup=true"
-                    )
-                ],
-            ]
+                        "➕ ❰ ᴊᴏɪɴ ʜᴇʀᴇ ғᴏʀ ᴜᴘᴅᴀᴛᴇs ❱ ➕", url=f"https://t.me/adityaserver")
+                ]
+                
+           ]
         ),
-        disable_web_page_preview=True,
     )
