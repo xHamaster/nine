@@ -304,7 +304,7 @@ async def cbcmnds(_, query: CallbackQuery):
 • /pause 
 - For pausing music
 
-• /resum 
+• /resume 
 - For resuming music
 
 • /skip 
@@ -322,7 +322,7 @@ async def cbcmnds(_, query: CallbackQuery):
 
 Powered by Resso !""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+            [[InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
@@ -337,7 +337,7 @@ This bot helps you to play music, to search music from youtube and to download m
 
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+            [[InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
@@ -358,14 +358,16 @@ async def cbguide(_, query: CallbackQuery):
 
 • Now play your song and enjoy !""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙  ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ", callback_data="cbhome")]]
+            [
+              [InlineKeyboardButton("Try Inline Search", switch_inline_query_current_chat="")],
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
 @Client.on_callback_query(filters.regex("cbhome"))
 async def cbhome(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**Welcome there** 👋
+        f"""**Welcome {message.from_user.mention()}** 👋
 
 This is the resso music bot, a bot for playing high quality and unbreakable music in your groups voice chat.
 
