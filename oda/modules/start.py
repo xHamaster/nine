@@ -13,12 +13,24 @@ from oda.config import BOT_USERNAME
 async def start_(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/81671ed0156630ad5db4e.png",
-        caption=f"""What a fuck bro""",
+        caption=f"""**Welcome {message.from_user.mention()}** 👋
+
+This is the resso music bot, a bot for playing high quality and unbreakable music in your groups voice chat.
+
+Just add me to your group and make a admin with needed admin permission to perform a right actions !
+
+Use the given buttons for more 📍""",
     reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "➕ ❰ ᴊᴏɪɴ ʜᴇʀᴇ ғᴏʀ ᴜᴘᴅᴀᴛᴇs ❱ ➕", callback_data="cbsetting")
+                        "Commands", callback_data="cbcmnds")
+                    InlineKeyboardButton(
+                        "Commands", callback_data="cbabout")
+                ],
+                [
+                    InlineKeyboardButton(
+                        "Commands", callback_data="cbguide")
                 ]
                 
            ]
