@@ -18,19 +18,19 @@ async def start_(c: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Commands", callback_data="command_list"),
+                    InlineKeyboardButton("𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌", callback_data="command_list"),
                 ],
                 [
                     InlineKeyboardButton(
-                        "Official Group", url=f"https://t.me/CreatorPavanChat"
+                        "𝖲𝗎𝗉𝗉𝗈𝗋𝗍 𝖦𝗋𝗈𝗎𝗉", url=f"https://t.me/CreatorPavanChat"
                     ),
                     InlineKeyboardButton(
-                        "Official Channel", url=f"https://t.me/creatorpavan"
+                        "𝖴𝗉𝖽𝖺𝗍𝖾𝗌 𝖢𝗁𝖺𝗇𝗇𝖾𝗅", url=f"https://t.me/creatorpavan"
                     ),
                 ],
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group ➕",
+                        "𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉",
                         url=f"https://t.me/RessoMusicBot?startgroup=true"
                     )
                 ],
