@@ -1,5 +1,5 @@
 from pyrogram import Client
-from driver.core import user as USER
+from oda.tgcalls import client as USER
 from pyrogram import filters
 from pyrogram.types import Chat, Message, User
 
