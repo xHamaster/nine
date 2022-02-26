@@ -127,10 +127,12 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 def others_markup(videoid, user_id):
     buttons = [
         [
-            InlineKeyboardButton(text="▷", callback_data=f"resumevc2"),
-            InlineKeyboardButton(text="II", callback_data=f"pausevc2"),
-            InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc2"),
-            InlineKeyboardButton(text="▢", callback_data=f"stopvc2"),
+            InlineKeyboardButton(text="▷", callback_data=f"resumevc"),
+            InlineKeyboardButton(text="II", callback_data=f"pausevc"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopvc"),
+        ],[
+            InlineKeyboardButton(text="Fuck", callback_data=f"cls"),
         ],
         
     ]
@@ -146,6 +148,20 @@ play_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
+        ],
+    ]
+)
+menu_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
+            InlineKeyboardButton(text="Close Menu", callback_data=f"cls"),
         ],
     ]
 )
@@ -437,8 +453,7 @@ async def closed(_, query: CallbackQuery):
     permission = "can_restrict_members"
     if permission not in permissions:
         return await query.answer(
-            "You don't have enough permissions to perform this action.\n"
-            + f"❌ Permission: {permission}",
+            "You don't have enough permissions to perform this action.",
             show_alert=True,
         )
     await query.message.delete()
