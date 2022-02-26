@@ -79,6 +79,24 @@ async def pause(_, message: Message):
     )
 
 
+@app.on_message(command(["menu", "settings"]) & other_filters)
+async def menu(_, message: Message):
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/e594d98181c2f54b872fd.jpg",
+        caption=f"""**Hey {message.from_user.mention()}** 👋
+This the menu section where you can manage music playing on your groups voice chat. Use the given buttons for manage.""",
+    reply_markup=InlineKeyboardMarkup(
+            [
+        [
+            InlineKeyboardButton(text="▷", callback_data=f"resumevc"),
+            InlineKeyboardButton(text="II", callback_data=f"pausevc"),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc"),
+            InlineKeyboardButton(text="▢", callback_data=f"stopvc"),
+        ],
+        
+    ]
+        ),
+    )
 @app.on_message(command(["resume", "or"]) & other_filters)
 async def resume(_, message: Message):
     if message.sender_chat:
