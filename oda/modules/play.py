@@ -150,8 +150,8 @@ play_keyboard = InlineKeyboardMarkup(
     ]
 )
 
-@Client.on_message(command(["menu", "settings"]) & other_filters)
-async def menu(_, message: Message):
+@Client.on_message(command(["menu", "settings"]) & ~filters.edited)
+async def menu(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/e594d98181c2f54b872fd.jpg",
         caption=f"""**Hey {message.from_user.mention()}** 👋
