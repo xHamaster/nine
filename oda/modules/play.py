@@ -140,15 +140,24 @@ def others_markup(videoid, user_id):
 play_keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],
     ]
 )
 
+@Client.on_message(command(["menu", "settings"]) & other_filters)
+async def menu(_, message: Message):
+    await message.reply_photo(
+        photo=f"https://telegra.ph/file/e594d98181c2f54b872fd.jpg",
+        caption=f"""**Hey {message.from_user.mention()}** 👋
+This the menu section where you can manage music playing on your groups voice chat. Use the given buttons for manage.""",
+    reply_markup=play_keyboard
+    )
 
 @Client.on_callback_query(filters.regex("skipvc"))
 async def skipvc(_, CallbackQuery):
@@ -174,7 +183,7 @@ Only admin with manage voice chat permission can do this.
             await CallbackQuery.message.reply(
                 f"""
 **Skip Button Used By** {rpk}
-\• No more songs in Queue
+• No more songs in Queue
 `Leaving Voice Chat..`
 """
             )
@@ -203,7 +212,7 @@ async def pausevc(_, CallbackQuery):
             user_name = CallbackQuery.from_user.first_name
             rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
             await CallbackQuery.message.reply(
-                f"**• Song paused by {rpk}**/n**, Use ▷ for resume.**", reply_markup=play_keyboard
+                f"**• Song paused by {rpk}.****You can Use ▷ for resume music.**", reply_markup=play_keyboard
             )
             await CallbackQuery.message.delete()
         else:
@@ -242,7 +251,7 @@ Only admin with manage voice chat permission can do this.
             user_name = CallbackQuery.from_user.first_name
             rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
             await CallbackQuery.message.reply(
-                f"**• Music resumed by {rpk}**/n**, Use II for pause.**", reply_markup=play_keyboard
+                f"**• Music resumed by {rpk}.****You can Use II for pause music again.**", reply_markup=play_keyboard
             )
             await CallbackQuery.message.delete()
     else:
@@ -272,7 +281,7 @@ async def stopvc(_, CallbackQuery):
         user_id = CallbackQuery.from_user.id
         user_name = CallbackQuery.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-        await CallbackQuery.message.reply(f"**• Music successfully stopped by {rpk}!**")
+        await CallbackQuery.message.reply(f"**• Music successfully stopped by {rpk}.**")
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
@@ -552,10 +561,10 @@ async def play(_, message: Message):
     [
         [
             
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],
         
     ]
@@ -592,10 +601,10 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],
         
     ]
@@ -723,10 +732,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],
         
     ]
