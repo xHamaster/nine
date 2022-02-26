@@ -326,6 +326,9 @@ async def cbcmnds(_, query: CallbackQuery):
 • /song (song name)
 - For download music
 
+• /menu or /settings
+- For open menu settings
+
 Powered by **Resso Music** !""",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -366,6 +369,8 @@ After you played your song some menu buttons will be comes to manage your music 
 - End Music
 • ‣‣ 
 - Skip Music
+
+You can also open this menu through /menu and /settings command.
 
 **Only admins can use this buttons 📍**""",
         reply_markup=InlineKeyboardMarkup(
