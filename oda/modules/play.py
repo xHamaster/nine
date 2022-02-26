@@ -124,37 +124,6 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-# Change image size
-def changeImageSize(maxWidth, maxHeight, image):
-    widthRatio = maxWidth / image.size[0]
-    heightRatio = maxHeight / image.size[1]
-    newWidth = int(widthRatio * image.size[0])
-    newHeight = int(heightRatio * image.size[1])
-    return image.resize((newWidth, newHeight))
-
-
-async def generate_cover(requested_by, title, views, duration, thumbnail):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(thumbnail) as resp:
-            if resp.status == 200:
-                f = await aiofiles.open("background.png", mode="wb")
-                await f.write(await resp.read())
-                await f.close()
-
-    image1 = Image.open("./background.png")
-    image2 = Image.open("etc/foreground.png")
-    image7 = changeImageSize(1280, 720, image1)
-    image8 = changeImageSize(1024, 1024, image2)
-    image3 = changeImageSize(1280, 720, image1)
-    image4 = changeImageSize(1280, 720, image2)
-    image5 = image3.convert("RGBA")
-    image6 = image4.convert("RGBA")
-    Image.alpha_composite(image5, image6).save("temp.png")
-    img = Image.open("temp.png")
-    img.save("final.png")
-    os.remove("temp.png")
-    os.remove("background.png")
-
 def others_markup(videoid, user_id):
     buttons = [
         [
@@ -163,24 +132,7 @@ def others_markup(videoid, user_id):
             InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc2"),
             InlineKeyboardButton(text="▢", callback_data=f"stopvc2"),
         ],
-        [
-            InlineKeyboardButton(text="➕ ᴀᴅᴅ ʏᴏᴜʀ ʟɪsᴛ​", callback_data=f'playlist {videoid}|{user_id}'),
-            InlineKeyboardButton(text="➕ ᴀᴅᴅ ɢʀᴏᴜᴘ ʟɪsᴛ​", callback_data=f'group_playlist {videoid}|{user_id}'),
-        ],
-        [
-            InlineKeyboardButton(
-                text="⇩ ᴜɴᴅᴜʜ ᴀᴜᴅɪᴏ", callback_data=f"gets audio|{videoid}|{user_id}"
-            ),
-            InlineKeyboardButton(
-                text="⇩ ᴜɴᴅᴜʜ ᴠɪᴅᴇᴏ", callback_data=f"gets video|{videoid}|{user_id}"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text="⪻", callback_data=f"goback {videoid}|{user_id}"
-            ),
-            InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ", callback_data=f"close2"),
-        ],
+        
     ]
     return buttons
 
@@ -800,7 +752,7 @@ async def play(_, message: Message):
                     try:
                         if eta > 2:
                             lel.edit(
-                                f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
+                                f"**Downloading given song**"
                             )
                     except Exception as e:
                         pass
@@ -809,7 +761,7 @@ async def play(_, message: Message):
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**Downloading** {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
+                                f"**Downloading given song..**"
                             )
                         print(
                             f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
@@ -819,7 +771,7 @@ async def play(_, message: Message):
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**Downloading** {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
+                                f"**Downloading given song..**"
                             )
                         print(
                             f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
@@ -829,7 +781,7 @@ async def play(_, message: Message):
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**Downloading** {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec"
+                                f"**Downloding give song..**"
                             )
                         print(
                             f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
@@ -841,7 +793,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**{title[:70]}...**"
+                    f"**Connecting voice chat...**"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
