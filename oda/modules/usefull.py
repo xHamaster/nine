@@ -5,7 +5,7 @@ import shlex
 import requests
 from datetime import datetime
 from pyrogram.errors import UserNotParticipant
-from plugins.extract_user import extract_user, last_online
+from oda.utils.extract_user import extract_user, last_online
 from telegraph import upload_file
 from typing import Callable, Coroutine, Dict, List, Tuple, Union
 from json import JSONDecodeError
