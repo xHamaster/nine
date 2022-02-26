@@ -140,10 +140,11 @@ def others_markup(videoid, user_id):
 play_keyboard = InlineKeyboardMarkup(
     [
         [
+            InlineKeyboardButton("▢", callback_data="stopvc"),
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
         ],
     ]
 )
@@ -332,12 +333,16 @@ async def cbmenu(_, query: CallbackQuery):
 
 After you played your song some menu buttons will be comes to manage your music playing on voice chat. They are as follows :
 
-• ▷ - Resume Music
-• ▢  - End Music
-• ‣‣ - Skip Music
-• II - Pause Music
+• ▷ 
+- Resume Music
+• II 
+- Pause Music
+• ▢  
+- End Music
+• ‣‣ 
+- Skip Music
 
-**Note : Only admins use this buttons.**""",
+**Only admins can use this buttons 📍**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
@@ -351,7 +356,7 @@ async def cbhelp(_, query: CallbackQuery):
 **[Resso Music Bot](https://t.me/RessoMusicBot)**
 
 **• Bot Managed By** 
-**- #secret**
+**- #one_noob**
 
 **• Special Thanks**
 **- #no_need**
@@ -546,10 +551,11 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            
+            InlineKeyboardButton("▢", callback_data="stopvc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
         ],
         
     ]
@@ -586,10 +592,10 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
         ],
         
     ]
@@ -681,7 +687,7 @@ async def play(_, message: Message):
     else:
         if len(message.command) < 2:
             return await lel.edit(
-                "`Give me song name !`"
+                "**Give me song name !**"
             )
         await lel.edit("**Connected successfully !**")
         query = message.text.split(None, 1)[1]
@@ -717,10 +723,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▷", callback_data="resumevc"),
         ],
         
     ]
@@ -820,7 +826,7 @@ async def play(_, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "**Error Joining Voice Chat. Make sure Voice Chat is Enabled.**"
+                "**Error ! Make sure Voice Chat is Enabled.**"
             )
 
         await music_on(message.chat.id)
