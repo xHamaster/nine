@@ -6,9 +6,9 @@ from pytgcalls.types.input_stream import InputStream
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from oda import app
-from oda.config import que
-from oda.database.queue import (
+from Codexun import app
+from Codexun.config import que
+from Codexun.database.queue import (
     is_active_chat,
     add_active_chat,
     remove_active_chat,
@@ -16,10 +16,10 @@ from oda.database.queue import (
     is_music_playing,
     music_off,
 )
-from oda.tgcalls import calls
-from oda.utils.filters import command, other_filters
-from oda.utils.decorators import sudo_users_only
-from oda.tgcalls.queues import clear, get, is_empty, put, task_done
+from Codexun.tgcalls import calls
+from Codexun.utils.filters import command, other_filters
+from Codexun.utils.decorators import sudo_users_only
+from Codexun.tgcalls.queues import clear, get, is_empty, put, task_done
 
 
 async def member_permissions(chat_id: int, user_id: int):
@@ -49,7 +49,7 @@ async def member_permissions(chat_id: int, user_id: int):
     return perms
 
 
-from oda.utils.administrator import adminsOnly
+from Codexun.utils.administrator import adminsOnly
 
 
 @app.on_message(command(["pause", "op"]) & other_filters)
