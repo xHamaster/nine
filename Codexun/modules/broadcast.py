@@ -3,11 +3,11 @@ import asyncio
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 
-from oda import app
-from oda.config import SUDO_USERS
-from oda.utils.filters import command
-from oda.tgcalls import client as USER
-from oda.database.chats import add_served_chat, blacklisted_chats, get_served_chats
+from Codexun import app
+from Codexun.config import SUDO_USERS
+from Codexun.utils.filters import command
+from Codexun.tgcalls import client as USER
+from Codexun.database.chats import add_served_chat, blacklisted_chats, get_served_chats
 
 chat_watcher_group = 10
 
