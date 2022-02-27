@@ -249,13 +249,7 @@ async def pausevc(_, CallbackQuery):
             await music_off(chat_id)
             await calls.pytgcalls.pause_stream(chat_id)
             await CallbackQuery.answer("Music Paused Successfully.", show_alert=True)
-            user_id = CallbackQuery.from_user.id
-            user_name = CallbackQuery.from_user.first_name
-            rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-            await CallbackQuery.message.reply(
-                f"**• Song paused by {rpk}.****You can Use ▷ for resume music.**", reply_markup=play_keyboard
-            )
-            await CallbackQuery.message.delete()
+            
         else:
             await CallbackQuery.answer(f"Nothing is playing on voice chat!", show_alert=True)
             return
