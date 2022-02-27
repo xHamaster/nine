@@ -510,8 +510,12 @@ async def play(_, message: Message):
         await message.reply(
             "🔴 __**Music player is turned off, ask the admin to turn on it on!**__"
         )
+        return await message.reply(
+            "You don't have enough permissions to perform this action.",
+            show_alert=True,
+        )
         return
-    lel = await message.reply("**Processing started..**", show_alert=True)
+    lel = await message.reply("**Processing started..**")
 
     chid = message.chat.id
 
