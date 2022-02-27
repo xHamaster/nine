@@ -511,7 +511,7 @@ async def play(_, message: Message):
             "🔴 __**Music player is turned off, ask the admin to turn on it on!**__"
         )
         return
-    lel = await message.reply("**Connecting resso server**")
+    lel = await message.reply("**Processing started..**, show_alert=True")
 
     chid = message.chat.id
 
