@@ -2,7 +2,7 @@ from typing import List, Union
 
 from pyrogram import filters
 
-from oda.config import CMD_MUSIC, SUDO_USERS
+from Codexun.config import CMD_MUSIC, SUDO_USERS
 
 other_filters = filters.group & ~filters.edited & ~filters.via_bot & ~filters.forwarded
 
