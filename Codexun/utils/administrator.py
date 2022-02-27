@@ -3,9 +3,9 @@ from functools import wraps
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 from pyrogram.types import Message
 
-from oda import app
-from oda.config import SUDO_USERS
-from oda.modules.admins import member_permissions
+from Codexun import app
+from Codexun.config import SUDO_USERS
+from Codexun.modules.admins import member_permissions
 
 
 async def authorised(message):
