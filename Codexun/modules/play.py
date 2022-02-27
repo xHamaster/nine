@@ -127,13 +127,13 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         font=font,
     )
     font = ImageFont.truetype("etc/American Captain.ttf", 45)
-    draw.text((22, 340),
+    draw.text((25, 320),
         f"Views: {views}",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/American Captain.ttf", 45)
-    draw.text((22, 400),
+    draw.text((25, 370),
         f"Duration: {duration} minutes",
         (255, 255, 255),
         font=font,
