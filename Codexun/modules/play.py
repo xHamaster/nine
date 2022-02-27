@@ -31,9 +31,9 @@ from pyrogram.types import (
 )
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
 
-from oda.tgcalls import calls, queues
-from oda.tgcalls.calls import client as ASS_ACC
-from oda.database.queue import (
+from Codexun.tgcalls import calls, queues
+from Codexun.tgcalls.calls import client as ASS_ACC
+from Codexun.database.queue import (
     get_active_chats,
     is_active_chat,
     add_active_chat,
@@ -42,10 +42,10 @@ from oda.database.queue import (
     is_music_playing,
     music_off,
 )
-from oda import app
-import oda.tgcalls
-from oda.tgcalls import youtube
-from oda.config import (
+from Codexun import app
+import Codexun.tgcalls
+from Codexun.tgcalls import youtube
+from Codexun.config import (
     DURATION_LIMIT,
     que,
     SUDO_USERS,
@@ -57,12 +57,12 @@ from oda.config import (
     UPDATE,
     BOT_USERNAME,
 )
-from oda.utils.filters import command
-from oda.utils.decorators import errors, sudo_users_only
-from oda.utils.administrator import adminsOnly
-from oda.utils.errors import DurationLimitError
-from oda.utils.gets import get_url, get_file_name
-from oda.modules.admins import member_permissions
+from Codexun.utils.filters import command
+from Codexun.utils.decorators import errors, sudo_users_only
+from Codexun.utils.administrator import adminsOnly
+from Codexun.utils.errors import DurationLimitError
+from Codexun.utils.gets import get_url, get_file_name
+from Codexun.modules.admins import member_permissions
 
 
 # plus
