@@ -119,6 +119,20 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("etc/Roboto-Medium.ttf", 60)
+    draw.text((25, 540),
+    draw.text((55, 540),
+        f"Resso Music Bot",
+        (255, 255, 255),
+        font=font,
+    )
+    font = ImageFont.truetype("etc/Roboto-Medium.ttf", 75)
+    draw.text((25, 610),
+    draw.text((25, 250),
+        f"{title}...",
+        (255, 255, 255),
+        font=font,
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
