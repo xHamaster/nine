@@ -510,10 +510,8 @@ async def play(_, message: Message):
         await message.reply(
             "🔴 __**Music player is turned off, ask the admin to turn on it on!**__"
         )
-        return await message.reply(
-            "You don't have enough permissions to perform this action.",
-            show_alert=True,
-        )
+      
+
         return
     lel = await message.reply("**Processing started..**")
 
@@ -741,7 +739,7 @@ async def play(_, message: Message):
 
         loop = asyncio.get_event_loop()
         x = await loop.run_in_executor(None, youtube.download, url, my_hook)
-        file_path = await oda.tgcalls.convert(x)
+        file_path = await Codexun.tgcalls.convert(x)
     else:
         if len(message.command) < 2:
             return await lel.edit(
