@@ -127,14 +127,14 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         font=font,
     )
     font = ImageFont.truetype("etc/Biryani-Black.ttf", 50)
-    draw.text((25, 260),
-        f"Views: {views} min.",
+    draw.text((25, 300),
+        f"Views: {views}",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Biryani-Black.ttf", 50)
-    draw.text((25, 265),
-        f"Duration: {duration}",
+    draw.text((25, 340),
+        f"Duration: {duration} min.",
         (255, 255, 255),
         font=font,
     )
@@ -621,7 +621,7 @@ async def play(_, message: Message):
         try:
             results = YoutubeSearch(url, max_results=1).to_dict()
             # print results
-            title = results[0]["title"][:15]
+            title = results[0]["title"][:12]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -745,7 +745,7 @@ async def play(_, message: Message):
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print results
-            title = results[0]["title"][:15]
+            title = results[0]["title"][:12]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
