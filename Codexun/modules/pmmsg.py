@@ -1,5 +1,5 @@
 from pyrogram import Client
-from oda.tgcalls import client as USER
+from Codexun.tgcalls import client as USER
 from pyrogram import filters
 from pyrogram.types import Chat, Message, User
 
