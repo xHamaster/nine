@@ -138,6 +138,12 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         (255, 255, 255),
         font=font,
     )
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
+    draw.text((25, 430),
+        f"Request: {requested_by}",
+        (255, 255, 255),
+        font=font,
+    )
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
