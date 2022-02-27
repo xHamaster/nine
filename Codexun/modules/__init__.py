@@ -9,7 +9,7 @@ from functools import wraps
 from pyrogram.types import Message
 
 from functools import wraps
-from oda.config import HEROKU_API_KEY, HEROKU_APP_NAME
+from Codexun.config import HEROKU_API_KEY, HEROKU_APP_NAME
 
 
 def get_text(message: Message) -> [None, str]:
