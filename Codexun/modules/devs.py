@@ -8,12 +8,12 @@ from time import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from oda import app
-from oda.config import OWNER_ID, BOT_NAME
-from oda.database.chats import blacklist_chat, blacklisted_chats, whitelist_chat
-from oda.utils.decorators import sudo_users_only
-from oda.utils.filters import command
-from oda.modules import check_heroku
+from Codexun import app
+from Codexun.config import OWNER_ID, BOT_NAME
+from Codexun.database.chats import blacklist_chat, blacklisted_chats, whitelist_chat
+from Codexun.utils.decorators import sudo_users_only
+from Codexun.utils.filters import command
+from Codexun.modules import check_heroku
 
 
 @app.on_message(command(["rebootmusic", "restart"]) & filters.user(OWNER_ID))
