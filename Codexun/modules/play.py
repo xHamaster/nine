@@ -282,13 +282,7 @@ Only admin with manage voice chat permission can do this.
             await music_on(chat_id)
             await calls.pytgcalls.resume_stream(chat_id)
             await CallbackQuery.answer("Music resumed successfully.", show_alert=True)
-            user_id = CallbackQuery.from_user.id
-            user_name = CallbackQuery.from_user.first_name
-            rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-            await CallbackQuery.message.reply(
-                f"**• Music resumed by {rpk}.****You can Use II for pause music again.**", reply_markup=play_keyboard
-            )
-            await CallbackQuery.message.delete()
+            
     else:
         await CallbackQuery.answer(f"Nothing is playing.", show_alert=True)
 
