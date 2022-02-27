@@ -191,7 +191,7 @@ async def menu(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/e594d98181c2f54b872fd.jpg",
         caption=f"""**Hey {message.from_user.mention()}** 👋
-This the menu section where you can manage music playing on your groups voice chat. Use the given buttons for manage.""",
+This the menu section where you can manage music playing on your groups voice chat. Use the given buttons for manage!""",
     reply_markup=menu_keyboard
     )
 
