@@ -117,6 +117,12 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
+    image7 = Image.open("./background.png")
+
+image8 = changeImageSize(1024, 1024, image7)
+
+image7).save("temp1.png")
+    img = Image.open("temp1.png")
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
