@@ -1,7 +1,7 @@
 import asyncio
 import importlib
 from pyrogram import Client
-from oda import config
+from Codexun import config
 
 
 SUDO_USERS = config.SUDO_USERS
@@ -14,7 +14,7 @@ ASSNAME = ""
 ASSUSERNAME = ""
 
 app = Client(
-    "odamusic",
+    "codexunmusic",
     config.API_ID,
     config.API_HASH,
     bot_token=config.BOT_TOKEN,
