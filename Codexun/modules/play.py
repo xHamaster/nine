@@ -120,15 +120,21 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/Roboto-Medium.ttf", 60)
-    draw.text((55, 540),
-        f"Resso Music Bot",
+    font = ImageFont.truetype("etc/Biryani-Black.ttf", 65)
+    draw.text((25, 250),
+        f"{title}..",
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/Roboto-Medium.ttf", 75)
-    draw.text((25, 250),
-        f"{title}...",
+    font = ImageFont.truetype("etc/Biryani-Black.ttf", 50)
+    draw.text((25, 260),
+        f"Views: {views} min.",
+        (255, 255, 255),
+        font=font,
+    )
+    font = ImageFont.truetype("etc/Biryani-Black.ttf", 50)
+    draw.text((25, 265),
+        f"Duration: {duration}",
         (255, 255, 255),
         font=font,
     )
@@ -615,7 +621,7 @@ async def play(_, message: Message):
         try:
             results = YoutubeSearch(url, max_results=1).to_dict()
             # print results
-            title = results[0]["title"]
+            title = results[0]["title"][:15]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -739,7 +745,7 @@ async def play(_, message: Message):
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print results
-            title = results[0]["title"]
+            title = results[0]["title"][:15]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
