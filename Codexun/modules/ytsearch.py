@@ -7,8 +7,8 @@ import pyrogram
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from oda import app
-from oda.utils.filters import command
+from Codexun import app
+from Codexun.utils.filters import command
 
 
 logging.basicConfig(
