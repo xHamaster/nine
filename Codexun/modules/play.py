@@ -126,13 +126,13 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/CodexunTeam.otf", 40)
+    font = ImageFont.truetype("etc/American Captain.ttf", 40)
     draw.text((25, 320),
         f"Views: {views}",
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/CodexunTeam.otf", 40)
+    font = ImageFont.truetype("etc/American Captain.ttf", 40)
     draw.text((25, 370),
         f"Duration: {duration} min.",
         (255, 255, 255),
