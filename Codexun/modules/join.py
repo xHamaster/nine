@@ -3,11 +3,11 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant, FloodWait
 
-from oda import app, ASSUSERNAME
-from oda.utils.decorators import sudo_users_only, errors
-from oda.utils.administrator import adminsOnly
-from oda.utils.filters import command
-from oda.tgcalls import client as USER
+from Codexun import app, ASSUSERNAME
+from Codexun.utils.decorators import sudo_users_only, errors
+from Codexun.utils.administrator import adminsOnly
+from Codexun.utils.filters import command
+from Codexun.tgcalls import client as USER
 
 
 @app.on_message(
