@@ -165,7 +165,7 @@ async def gen_thumb(thumbnail, title, userid, views, duration):
 
     # description
     views = f"Views : {views}"
-    duration = f"Duration : {duration} Mins""
+    duration = f"Duration : {duration} Mins"
 
     image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
