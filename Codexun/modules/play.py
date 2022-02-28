@@ -595,12 +595,17 @@ async def play(_, message: Message):
 
         keyboard = InlineKeyboardMarkup(
     [
-        [
-            
+        
+       [
+            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
+        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▣", callback_data="stopvc"),
+        ],[
+            InlineKeyboardButton("Menu", callback_data="menu"),
+            InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
     ]
@@ -636,11 +641,17 @@ async def play(_, message: Message):
 
             keyboard = InlineKeyboardMarkup(
     [
-        [
+        
+       [
+            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
+        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▣", callback_data="stopvc"),
+        ],[
+            InlineKeyboardButton("Menu", callback_data="menu"),
+            InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
     ]
@@ -769,10 +780,15 @@ async def play(_, message: Message):
     [
         
        [
+            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
+        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("▣", callback_data="stopvc"),
+        ],[
+            InlineKeyboardButton("Menu", callback_data="menu"),
+            InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
     ]
