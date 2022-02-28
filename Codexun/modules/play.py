@@ -8,7 +8,7 @@ import subprocess
 import requests
 import aiohttp
 import yt_dlp
-import numpy as np
+import np
 import aiohttp
 import random
 
