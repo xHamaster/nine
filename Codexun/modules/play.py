@@ -119,22 +119,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
-    img7 = Image.open(r"./background.png") 
-
-  
-    # Opening the secondary image (overlay image) 
-
-    img8 = Image.open(r"temp.png") 
-
-  
-    # Pasting img7 image on top of img8
-    # starting at coordinates (0, 0) 
-
-    img7.paste(img8, (0,0), mask = img8)
-    img2 = Image.open("temp2.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    draw1 = ImageDraw.Draw(img2)
     font = ImageFont.truetype("etc/Codexun.otf", 65)
     draw.text((22, 260),
         f"{title}..",
@@ -156,12 +142,6 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
     draw.text((25, 430),
         f"Request: {requested_by}",
-        (255, 255, 255),
-        font=font,
-    )
-    font = ImageFont.truetype("etc/Codexun.otf", 65)
-    draw2.text((22, 260),
-        f"{title}..",
         (255, 255, 255),
         font=font,
     )
