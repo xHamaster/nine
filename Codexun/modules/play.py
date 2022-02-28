@@ -596,9 +596,6 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("{duration} »»----------► 0", callback_data="resumevc"),
-            
-        ],[
             
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
