@@ -13,6 +13,7 @@ from os import path
 from typing import Union
 from asyncio import QueueEmpty
 from PIL import Image, ImageFont, ImageDraw
+from PIL import ImageGrab
 from typing import Callable
 
 from pytgcalls import StreamType
