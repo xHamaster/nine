@@ -8,7 +8,6 @@ import subprocess
 import requests
 import aiohttp
 import yt_dlp
-import np
 import aiohttp
 import random
 
@@ -128,9 +127,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     lum_img = Image.new('L', [720,720] , 0)
     draw = ImageDraw.Draw(lum_img)
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
-    img_arr =np.array(image3)
-    lum_img_arr =np.array(lum_img)
-    final_img_arr = np.dstack((img_arr,lum_img_arr))
+    
     image3 = Image.fromarray(final_img_arr)
     image3 = image3.resize((600,600))
 
