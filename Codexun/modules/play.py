@@ -141,18 +141,6 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image4 = ImageDraw.Draw(image2)
     
-    # title
-    title1 = truncate(title)
-    image4.text((670, 300), text=title1[0], fill="white", font = font3, align ="left") 
-    image4.text((670, 350), text=title1[1], fill="white", font = font3, align ="left") 
-
-    # description
-    views = f"Views : {views}"
-    duration = f"Duration : {duration} Mins"
-
-    image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
-    image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
-
     image2.save(f"final.png")
     os.remove(f"background.png")
     final = f"temp.png"
