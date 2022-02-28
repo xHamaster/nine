@@ -121,15 +121,15 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def generate_cover(requested_by, title, views, duration, thumbnail, userid):
+async def generate_cover(requested_by, title, views, duration, thumbnail, user_id):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open(f"cache/thumb{userid}.jpg", mode="wb")
+                f = await aiofiles.open(f"cache/thumb{user_id}.jpg", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
     
-    image = Image.open(f"cache/thumb{userid}.jpg")
+    image = Image.open(f"cache/thumb{user_id}.jpg")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
@@ -170,9 +170,9 @@ async def generate_cover(requested_by, title, views, duration, thumbnail, userid
     image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
 
-    image2.save(f"cache/final{userid}.png")
-    os.remove(f"cache/thumb{userid}.jpg")
-    final = f"cache/final{userid}.png"
+    image2.save(f"cache/final{user_id}.png")
+    os.remove(f"cache/thumb{user_id}.jpg")
+    final = f"cache/final{user_id}.png"
     return final
 
 
