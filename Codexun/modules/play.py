@@ -596,6 +596,9 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         [
+            InlineKeyboardButton("{duration} »»----------► 0", callback_data="resumevc"),
+            
+        ],[
             
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
@@ -637,6 +640,9 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
     [
         [
+            InlineKeyboardButton("{duration} »»----------► 0", callback_data="resumevc"),
+            
+        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
@@ -767,7 +773,11 @@ async def play(_, message: Message):
 
         keyboard = InlineKeyboardMarkup(
     [
-        [
+        
+       [
+            InlineKeyboardButton("{duration} »»----------► 0", callback_data="resumevc"),
+            
+        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
