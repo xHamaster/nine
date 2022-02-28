@@ -119,11 +119,18 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
-    image7 = Image.open("./background.png")
-    image8 = changeImageSize(1024, 1024, image7)
-    image9 = image8.convert("RGBA")
-    payloadimage = ImageGrab.grabclipboard()
-    payloadimage.save('temp2.png', 'PNG')
+    img7 = Image.open(r"image1") 
+
+  
+    # Opening the secondary image (overlay image) 
+
+    img8 = Image.open(r"temp.png") 
+
+  
+    # Pasting img7 image on top of img8
+    # starting at coordinates (0, 0) 
+
+    img7.paste(img8, (0,0), mask = temp2.png)
     img2 = Image.open("temp2.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
