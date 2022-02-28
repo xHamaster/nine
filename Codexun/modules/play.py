@@ -121,7 +121,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def gen_thumb(thumbnail, title, userid, views, duration):
+async def generate_cover(requested_by, title, views, duration, thumbnail, userid)
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
@@ -828,7 +828,7 @@ async def play(_, message: Message):
             )
             return
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)
+        await generate_cover(requested_by, title, views, duration, thumbnail, userid)
 
         def my_hook(d):
             if d["status"] == "downloading":
