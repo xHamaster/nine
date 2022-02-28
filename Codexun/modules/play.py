@@ -119,7 +119,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
-    img7 = Image.open(r"image1") 
+    img7 = Image.open(r"./background.png") 
 
   
     # Opening the secondary image (overlay image) 
@@ -130,7 +130,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     # Pasting img7 image on top of img8
     # starting at coordinates (0, 0) 
 
-    img7.paste(img8, (0,0), mask = temp2.png)
+    img7.paste(img8, (0,0), mask = img8)
     img2 = Image.open("temp2.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
