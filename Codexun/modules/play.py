@@ -140,8 +140,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     font4 = ImageFont.truetype(r'Utils/arial_bold.ttf', 35)
 
     image4 = ImageDraw.Draw(image2)
-    image4.text((10, 10), BOT_NAME, fill="white", font = font1, align ="left") 
-    image4.text((670, 150), status, fill="white", font = font2, align ="left") 
+    image4.text((10, 10), fill="white", font = font1, align ="left") 
+    image4.text((670, 150), fill="white", font = font2, align ="left") 
 
     # title
     title1 = truncate(title)
