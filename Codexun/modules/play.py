@@ -127,17 +127,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     lum_img = Image.new('L', [720,720] , 0)
     draw = ImageDraw.Draw(lum_img)
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
- 
     image3 = image3.resize((600,600))
 
-    image2.paste(circle, (50,70), mask = circle)
+    image2.paste(image3, (50,70), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
-
-    # fonts
-    font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
-    font2 = ImageFont.truetype(r'Utils/arial_black.ttf', 60)
-    font3 = ImageFont.truetype(r'Utils/arial_black.ttf', 40)
-    font4 = ImageFont.truetype(r'Utils/arial_bold.ttf', 35)
 
     image4 = ImageDraw.Draw(image2)
     
