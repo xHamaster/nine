@@ -136,10 +136,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image2.paste(image3, (50,70), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
-
-    image4 = ImageDraw.Draw(image2)
     
-    image3.save(f"final.png")
+    image2.save(f"final.png")
     os.remove(f"background.png")
     final = f"temp.png"
     return final
