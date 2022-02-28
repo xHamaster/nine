@@ -8,6 +8,9 @@ import subprocess
 import requests
 import aiohttp
 import yt_dlp
+import numpy as np
+import aiohttp
+import random
 
 from os import path
 from typing import Union
