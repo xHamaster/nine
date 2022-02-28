@@ -828,7 +828,7 @@ async def play(_, message: Message):
             )
             return
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail, userid)
+        await generate_cover(requested_by, title, views, duration, thumbnail, user_id)
 
         def my_hook(d):
             if d["status"] == "downloading":
