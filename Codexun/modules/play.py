@@ -98,7 +98,20 @@ def time_to_seconds(time):
     return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-# Change image size
+def truncate(text):
+    list = text.split(" ")
+    text1 = ""
+    text2 = ""    
+    for i in list:
+        if len(text1) + len(i) < 24:        
+            text1 += " " + i
+        elif len(text2) + len(i) < 24:        
+            text2 += " " + i
+
+    text1 = text1.strip()
+    text2 = text2.strip()     
+    return [text1,text2]
+
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
@@ -108,15 +121,15 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def generate_cover(requested_by, title, views, duration, thumbnail):
+async def gen_thumb(thumbnail, title, userid, views, duration):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open("background.png", mode="wb")
+                f = await aiofiles.open(f"cache/thumb{userid}.jpg", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-
-    image = Image.open(f"./background.png")
+    
+    image = Image.open(f"cache/thumb{userid}.jpg")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
@@ -136,10 +149,30 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image2.paste(image3, (50,70), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
+
+    # fonts
+    font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
+    font2 = ImageFont.truetype(r'Utils/arial_black.ttf', 60)
+    font3 = ImageFont.truetype(r'Utils/arial_black.ttf', 40)
+    font4 = ImageFont.truetype(r'Utils/arial_bold.ttf', 35)
+
+    image4 = ImageDraw.Draw(image2)
     
-    image2.save(f"final.png")
-    os.remove(f"background.png")
-    final = f"temp.png"
+    # title
+    title1 = truncate(title)
+    image4.text((670, 300), text=title1[0], fill="white", font = font3, align ="left") 
+    image4.text((670, 350), text=title1[1], fill="white", font = font3, align ="left") 
+
+    # description
+    views = f"Views : {views}"
+    duration = f"Duration : {duration} Mins""
+
+    image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
+    image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
+
+    image2.save(f"cache/final{userid}.png")
+    os.remove(f"cache/thumb{userid}.jpg")
+    final = f"cache/final{userid}.png"
     return final
 
 
