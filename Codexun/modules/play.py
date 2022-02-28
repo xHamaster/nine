@@ -129,7 +129,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
     image3 = image3.resize((600,600))
 
-    image2.paste(image3, (50,70), mask = image3)
+    image2.paste(image, (50,70), mask = image)
     image2.paste(circle, (0,0), mask = circle)
 
     image4 = ImageDraw.Draw(image2)
