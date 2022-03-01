@@ -150,7 +150,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image3 = image3.resize((600,600))
 
     image2.paste(image3, (50,70), mask = image3)
-    image8.paste(image3, (50,70), mask = image8)
+    image2.paste(image8, (50,70), mask = image8)
     
     # fonts
     font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
