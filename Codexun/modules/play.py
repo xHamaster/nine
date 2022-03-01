@@ -130,12 +130,12 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.write(await resp.read())
                 await f.close()
 
-    image = Image.open(f"./background.png")
+    image = Image.open(f""etc/foreground.png"")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
     image1 = image1.filter(ImageFilter.BoxBlur(20))
-    image2 = Image.blend(image1,0.6)
+    image2 = Image.blend(image1, black, 0.6)
 
     # Cropping circle from thubnail
     image3 = image.crop((280,0,1000,720))
@@ -175,7 +175,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image2.save(f"final.png")
     os.remove(f"background.png")
-    final = f"temp.png"
+    os.remove(f"temp.png")
     return final
 
 
