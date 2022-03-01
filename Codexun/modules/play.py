@@ -121,7 +121,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
-    image1 = image1.filter(ImageFilter.BoxBlur(20))
+    image1 = image1.filter(ImageFilter.BoxBlur(10))
     image2 = Image.blend(image1, black, 0.6)
     
     
