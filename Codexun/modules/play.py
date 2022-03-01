@@ -139,7 +139,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     
     # Cropping circle from thubnail
     image3 = image.crop((280,0,1000,720))
-    lum_img = Image.new('L', [1024,1024] , 0)
+    lum_img = Image.new('L', [720,720] , 0)
     draw = ImageDraw.Draw(lum_img)
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
     img_arr =np.array(image3)
@@ -148,7 +148,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image3 = Image.fromarray(final_img_arr)
     image3 = image3.resize((600,600))
 
-    image2.paste(image3, (50,70), mask = image3)
+    image2.paste(image3, (0,0), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
 
     
