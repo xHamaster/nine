@@ -112,6 +112,7 @@ def truncate(text):
     text2 = text2.strip()     
     return [text1,text2]
 
+# Change image size
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
@@ -121,15 +122,15 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def generate_cover(requested_by, title, views, duration, thumbnail, user_id):
+async def generate_cover(requested_by, title, views, duration, thumbnail):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open(f"cache/thumb{user_id}.jpg", mode="wb")
+                f = await aiofiles.open("background.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-    
-    image = Image.open(f"cache/thumb{user_id}.jpg")
+
+    image = Image.open(f"./background.png")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
@@ -149,7 +150,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail, user_i
 
     image2.paste(image3, (50,70), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
-
+    
     # fonts
     font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
     font2 = ImageFont.truetype(r'Utils/arial_black.ttf', 60)
@@ -157,7 +158,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail, user_i
     font4 = ImageFont.truetype(r'Utils/arial_bold.ttf', 35)
 
     image4 = ImageDraw.Draw(image2)
-    
+
     # title
     title1 = truncate(title)
     image4.text((670, 300), text=title1[0], fill="white", font = font3, align ="left") 
@@ -170,9 +171,11 @@ async def generate_cover(requested_by, title, views, duration, thumbnail, user_i
     image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
 
-    image2.save(f"cache/final{user_id}.png")
-    os.remove(f"cache/thumb{user_id}.jpg")
-    final = f"cache/final{user_id}.png"
+
+
+    image2.save(f"final.png")
+    os.remove(f"background.png")
+    final = f"temp.png"
     return final
 
 
