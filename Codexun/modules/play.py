@@ -136,7 +136,16 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image1 = changeImageSize(1280, 720, image)
     image1 = image1.filter(ImageFilter.BoxBlur(20))
     image2 = Image.blend(image1, black, 0.6)
-    image8= image.crop((280,0,1000,720))
+    image8 = image.crop((280,0,1000,720))
+    
+    lum_img = Image.new('L', [720,720] , 0)
+    draw = ImageDraw.Draw(lum_img)
+    draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+    img_arr =np.array(image3)
+    lum_img_arr =np.array(lum_img)
+    final_img_arr = np.dstack((img_arr,lum_img_arr))
+    image9 = Image.fromarray(final_img_arr)
+    image9 = image8.resize((600,600))
 
     # Cropping circle from thubnail
     image3 = image.crop((280,0,1000,720))
@@ -150,7 +159,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image3 = image3.resize((600,600))
 
     image2.paste(image3, (50,70), mask = image3)
-    image2.paste(image8, (50,70), mask = image8)
+    image2.paste(image9, (50,70), mask = image9)
     
     # fonts
     font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
