@@ -97,33 +97,6 @@ def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
-# Change image size
-def changeImageSize(maxWidth, maxHeight, image):
-    widthRatio = maxWidth / image.size[0]
-    heightRatio = maxHeight / image.size[1]
-    newWidth = int(widthRatio * image.size[0])
-    newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
-    return newImage
-
-
-async def generate_cover(requested_by, title, views, duration, thumbnail):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(thumbnail) as resp:
-            if resp.status == 200:
-                f = await aiofiles.open("background.png", mode="wb")
-                await f.write(await resp.read())
-                await f.close()
-
-
-    image1 = Image.open("background.png")
-    image2 = Image.open("etc/foreground.png")
-    image3 = changeImageSize(1280, 720, image1)
-    image4 = changeImageSize(1280, 720, image2)
-    image5 = image3.convert("RGBA")
-    image6 = image4.convert("RGBA")
-    Image.alpha_composite(image5, image6).save("temp.png")
-    img = Image.open("temp.png")
 
 def truncate(text):
     list = text.split(" ")
@@ -165,8 +138,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image2 = Image.blend(image1, black, 0.6)
     
     # Cropping circle from thubnail
-    image3 = img.crop((280,0,1000,720))
-    lum_img = Image.new('L', [720,720] , 0)
+    image3 = image.crop((280,0,1000,720))
+    lum_img = Image.new('L', [1024,1024] , 0)
     draw = ImageDraw.Draw(lum_img)
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
     img_arr =np.array(image3)
