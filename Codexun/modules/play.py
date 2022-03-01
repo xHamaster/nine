@@ -164,6 +164,8 @@ play_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
+        ],[
+            InlineKeyboardButton(text="Fuck", callback_data=f"cls"),
         ],
     ]
 )
@@ -177,7 +179,7 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Close Menu", callback_data=f"cls"),
+            InlineKeyboardButton(text="Close", callback_data=f"cls"),
         ],
     ]
 )
