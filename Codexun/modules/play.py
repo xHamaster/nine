@@ -130,7 +130,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.write(await resp.read())
                 await f.close()
 
-    image = Image.open(f""etc/foreground.png"")
+    image = Image.open(f"etc/foreground.png")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
