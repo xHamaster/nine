@@ -120,7 +120,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image = Image.open(f"background.png")
     black = Image.open("Utils/black.jpg")
     circle = Image.open("Utils/circle.png")
-    image1 = changeImageSize(1280, 720, image)
+    image1 = changeImageSize(1280, 1280, image)
     image1 = image1.filter(ImageFilter.BoxBlur(10))
     image2 = Image.blend(image1, black, 0.6)
     
@@ -581,14 +581,12 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
-        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▣", callback_data="stopvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],[
-            InlineKeyboardButton("Menu", callback_data="menu"),
+            
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
@@ -627,14 +625,12 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
-        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▣", callback_data="stopvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],[
-            InlineKeyboardButton("Menu", callback_data="menu"),
+            
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
@@ -764,14 +760,11 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("03:45----------01:15", callback_data="nothing"),
-        ],[
             InlineKeyboardButton("▷", callback_data="resumevc"),
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▣", callback_data="stopvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
         ],[
-            InlineKeyboardButton("Menu", callback_data="menu"),
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
