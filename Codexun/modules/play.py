@@ -135,7 +135,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
     image1 = image1.filter(ImageFilter.BoxBlur(20))
-    image2 = Image1.blend(image1, black, 0.6)
+    image2 = Image.blend(image1, circle, 0.6)
 
     # Cropping circle from thubnail
     image3 = image.crop((280,0,1000,720))
