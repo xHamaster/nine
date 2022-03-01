@@ -884,3 +884,15 @@ async def play(_, message: Message):
 
     os.remove("final.png")
     return await lel.delete()
+
+
+
+
+#Pavan Nub
+#Aayu Pro
+#Vplay Added By Aayu
+#Pavan Noob 
+#Aayu Op 
+#Video Play Added By Aayu 
+#Op_Aayu Pero
+#Crator_Pavan Nub
