@@ -138,10 +138,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image2 = Image.blend(image1, black, 0.6)
 
     # Cropping circle from thubnail
-    image3 = image.crop((280,0,1000,720))
+    image3 = image.crop((280,800,1000,800))
     lum_img = Image.new('L', [720,720] , 0)
     draw = ImageDraw.Draw(lum_img)
-    draw.pieslice([(0,0), (800,800)], 0, 360, fill = 255, outline = "white")
+    draw.pieslice([(800,800), (800,800)], 0, 360, fill = 255, outline = "white")
     img_arr =np.array(image3)
     lum_img_arr =np.array(lum_img)
     final_img_arr = np.dstack((img_arr,lum_img_arr))
