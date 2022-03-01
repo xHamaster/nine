@@ -124,8 +124,14 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image1 = image1.filter(ImageFilter.BoxBlur(10))
     image2 = Image.blend(image1,black,0.6)
 
-    
-    image2.save(f"final.png")
+   # Cropping circle from thubnail
+    image3 = image.crop((280,0,1000,720))
+    lum_img = Image.new('L', [720,720] , 0)
+    draw = ImageDraw.Draw(lum_img)
+    draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+    image3 = image3.resize((600,600))
+
+    image3.save(f"final.png")
     os.remove(f"background.png")
     final = f"temp.png"
     return final
