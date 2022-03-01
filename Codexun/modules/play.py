@@ -175,7 +175,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image2.save(f"final.png")
     os.remove(f"background.png")
-    return final
+    
 
 
     
