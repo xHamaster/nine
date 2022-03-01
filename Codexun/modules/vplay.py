@@ -194,7 +194,7 @@ import re
 import asyncio
 
 from Codexun.config import ASSISTANT_NAME, BOT_USERNAME, IMG_1, IMG_2
-from program.utils.inline import stream_markup
+from Codexun.utils.inline import stream_markup
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.filters import command, other_filters
