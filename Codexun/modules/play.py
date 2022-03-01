@@ -122,8 +122,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     circle = Image.open("Utils/circle.png")
     image1 = changeImageSize(1280, 720, image)
     image1 = image1.filter(ImageFilter.BoxBlur(10))
-    image2 = Image.blend(image1,black,0.6)
-
+    
    # Cropping circle from thubnail
     image3 = image.crop((280,0,1000,720))
     lum_img = Image.new('L', [720,720] , 0)
@@ -131,10 +130,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
     image3 = image3.resize((600,600))
     
-    image2.paste(image3, (50,70), mask = image3)
-    image2.paste(circle, (0,0), mask = circle)
-
-
+    
     image3.save(f"final.png")
     os.remove(f"background.png")
     final = f"temp.png"
