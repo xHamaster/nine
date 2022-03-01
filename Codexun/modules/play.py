@@ -146,9 +146,9 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     lum_img_arr =np.array(lum_img)
     final_img_arr = np.dstack((img_arr,lum_img_arr))
     image3 = Image.fromarray(final_img_arr)
-    image3 = image3.resize((720,720))
+    image3 = image3.resize((600,600))
 
-    image2.paste(image3, (0,0), mask = image3)
+    image2.paste(image3, (600,600), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
 
     # fonts
