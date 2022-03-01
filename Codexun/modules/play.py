@@ -130,6 +130,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw = ImageDraw.Draw(lum_img)
     draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
     image3 = image3.resize((600,600))
+    
+    image2.paste(image3, (50,70), mask = image3)
+    image2.paste(circle, (0,0), mask = circle)
+
 
     image3.save(f"final.png")
     os.remove(f"background.png")
