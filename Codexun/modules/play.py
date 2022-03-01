@@ -141,15 +141,15 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image3 = image.crop((280,0,1000,720))
     lum_img = Image.new('L', [720,720] , 0)
     draw = ImageDraw.Draw(lum_img)
-    draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+    draw.pieslice([(0,0), (800,800)], 0, 360, fill = 255, outline = "white")
     img_arr =np.array(image3)
     lum_img_arr =np.array(lum_img)
     final_img_arr = np.dstack((img_arr,lum_img_arr))
     image3 = Image.fromarray(final_img_arr)
     image3 = image3.resize((600,600))
 
-    image2.paste(image3, (100,100), mask = image3)
-    image2.paste(image3, (100,100), mask = image3)
+    image2.paste(image3, (50,70), mask = image3)
+    image2.paste(image3, (50,70), mask = image3)
     
     # fonts
     font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
