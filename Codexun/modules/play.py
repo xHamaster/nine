@@ -150,6 +150,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image2.paste(image3, (50,70), mask = image3)
     image2.paste(circle, (0,0), mask = circle)
+    image2.paste(image, (0,0), mask = image)
     
     # fonts
     font1 = ImageFont.truetype(r'Utils/arial_bold.ttf', 30)
