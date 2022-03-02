@@ -127,8 +127,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/Codexun.otf", 110)
-    draw.text((150, 400),
+    font = ImageFont.truetype("Utils/arial_black.ttf", 90)
+    draw.text((95, 400),
         f"{title}..",
         (255, 255, 255),
         font=font,
@@ -632,7 +632,7 @@ async def play(_, message: Message):
         try:
             results = YoutubeSearch(url, max_results=1).to_dict()
             # print results
-            title = results[0]["title"][:20]
+            title = results[0]["title"][:18]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -760,7 +760,7 @@ async def play(_, message: Message):
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print results
-            title = results[0]["title"][:20]
+            title = results[0]["title"][:18]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
