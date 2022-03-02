@@ -150,7 +150,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
     draw.text((25, 430),
-        f"Request: {CHAT_TITLE}",
+        f"Request: Resso Music",
         (255, 255, 255),
         font=font,
     )
