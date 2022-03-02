@@ -613,6 +613,9 @@ async def play(_, message: Message):
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
         ],[
+            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
+            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
+        ],[
             
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
@@ -656,6 +659,9 @@ async def play(_, message: Message):
             InlineKeyboardButton("II", callback_data="pausevc"),
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
+        ],[
+            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
+            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
         ],[
             
             InlineKeyboardButton("Close", callback_data="cls"),
@@ -792,6 +798,9 @@ async def play(_, message: Message):
             InlineKeyboardButton("‣‣I", callback_data="skipvc"),
             InlineKeyboardButton("▢", callback_data="stopvc"),
         ],[
+            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
+            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
+        ],[
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
@@ -878,8 +887,8 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**👤 Played by :** **{}**".format(
-                url, message.from_user.mention()
+            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n\n📽 **Playing at : {}**".format(
+                url, message.from_user.mention(), message.chat.title
             ),
         )
     else:
@@ -903,8 +912,8 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**👤 Played by :** **{}**".format(
-                url, message.from_user.mention()
+            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n\n📽 **Playing at : {}**".format(
+                url, message.from_user.mention(), message.chat.title
             ),
         )
 
