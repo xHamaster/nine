@@ -229,7 +229,6 @@ async def cbresume(_, query: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("set_stop"))
-@check_blacklist()
 async def cbstop(_, query: CallbackQuery):
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
