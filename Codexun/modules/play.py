@@ -142,7 +142,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
-    draw.text((90, 545),
+    draw.text((90, 542),
         f"Duration : {duration} minutes",
         (255, 255, 255),
         font=font,
@@ -878,7 +878,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Info 💡]({})**\n\n**👤 Played By:** **{}**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**👤 Played by :** **{}**".format(
                 url, message.from_user.mention()
             ),
         )
@@ -903,7 +903,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Info 💡]({})**\n\n**👤 Played By:** **{}**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**👤 Played by :** **{}**".format(
                 url, message.from_user.mention()
             ),
         )
