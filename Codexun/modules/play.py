@@ -510,7 +510,6 @@ async def cbmenu(_, query: CallbackQuery):
             "Only admin with manage voice chat permission can do this.",
             show_alert=True,
         )
- else:
       await query.edit_message_text(
      f"""Menu Section Successfully Opened !""",
         reply_markup=menu_keyboard
