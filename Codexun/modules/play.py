@@ -121,7 +121,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     image1 = Image.open("./background.png")
     image2 = Image.open("etc/foreground.png")
-    image1 = image1.filter(ImageFilter.BoxBlur(10))
+    image1 = image1.filter(ImageFilter.BoxBlur(5))
     image3 = changeImageSize(1024, 1024, image1)
     image4 = changeImageSize(1024, 1024, image2)
     image5 = image3.convert("RGBA")
@@ -149,7 +149,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 590),
-        f"Request: {Resso Music Bot}",
+        f"Request: Resso Music Bot",
         (255, 255, 255),
         font=font,
     )
