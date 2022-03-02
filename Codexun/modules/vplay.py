@@ -187,7 +187,6 @@ menu_keyboard = InlineKeyboardMarkup(
 
 
 @Client.on_callback_query(filters.regex("set_pause"))
-@check_blacklist()
 async def cbpause(_, query: CallbackQuery):
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
@@ -209,7 +208,6 @@ async def cbpause(_, query: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("set_resume"))
-@check_blacklist()
 async def cbresume(_, query: CallbackQuery):
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
