@@ -489,6 +489,19 @@ async def closed(_, query: CallbackQuery):
     await query.message.delete()
 
 
+@Client.on_callback_query(filters.regex("cbsupport"))
+async def cbsupport(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
+Here is the official update channel of this bot. Kindly join it for regular updates from us..!""",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("Join Here", url=f"https://t.me/Codexun")],
+              [InlineKeyboardButton("🔙", callback_data="cbhome")]]
+        ),
+    )
+
+
+
 # play
 @Client.on_message(
     command(["play", f"play@{BOT_USERNAME}"])
@@ -608,15 +621,9 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("‣‣I", callback_data="cbmenu"),
+            InlineKeyboardButton("▢", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
-            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
-        ],[
-            
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
@@ -655,15 +662,9 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("‣‣I", callback_data="cbmenu"),
+            InlineKeyboardButton("▢", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
-            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
-        ],[
-            
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
         
@@ -793,13 +794,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-        ],[
-            InlineKeyboardButton("Volume 🎶", callback_data="cls"),
-            InlineKeyboardButton("Search 🔍", switch_inline_query_current_chat=""),
+            InlineKeyboardButton("‣‣I", callback_data="cbmenu"),
+            InlineKeyboardButton("▢", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close", callback_data="cls"),
         ],
@@ -912,7 +908,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n🎥 **Playing at : [{}](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂User :** **{}**\n🎥**Group : [{}](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
