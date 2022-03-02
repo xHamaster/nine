@@ -887,7 +887,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n\n📽 **Playing at : {}**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n🎥 **Playing at : [{}](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
@@ -912,7 +912,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n\n📽 **Playing at : {}**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n🎥 **Playing at : [{}](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
