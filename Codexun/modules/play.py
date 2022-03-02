@@ -361,7 +361,7 @@ This bot helps you to play music, to search music from youtube and to download m
         ),
     )
 
-@Client.on_callback_query(filters.regex("cbmenu"))
+@Client.on_callback_query(filters.regex("cbfuck"))
 async def cbmenu(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Menu Buttons 💡**
@@ -382,9 +382,6 @@ You can also open this menu through /menu and /settings command.
 **Only admins can use this buttons 📍**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("🔙  Back Home", callback_data="set_pause")],
-            [InlineKeyboardButton("🔙  Back Home", callback_data="set_resume")],
-            [InlineKeyboardButton("🔙  Back Home", callback_data="set_stop")]
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
         ),
     )
