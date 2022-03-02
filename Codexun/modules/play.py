@@ -137,19 +137,19 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 490),
-        f"Views: {views}",
+        f"Views : {views}",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
-    draw.text((90, 540),
-        f"Duration: {duration} minutes",
+    draw.text((90, 545),
+        f"Duration : {duration} minutes",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 590),
-        f"Request: Resso Music Bot",
+        f"Request : Resso Music Bot",
         (255, 255, 255),
         font=font,
     )
@@ -878,6 +878,9 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
+            caption="**[Get Additional Info 💡]({})**\n\n**👤 Played By:** **{}**".format(
+                url, message.from_user.mention()
+            ),
         )
     else:
         try:
@@ -900,6 +903,9 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
+            caption="**[Get Additional Info 💡]({})**\n\n**👤 Played By:** **{}**".format(
+                url, message.from_user.mention()
+            ),
         )
 
     os.remove("final.png")
