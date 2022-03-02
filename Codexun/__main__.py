@@ -41,9 +41,7 @@ async def load_start():
             print("Error came while clearing db")
             pass
     print("[INFO]: STARTED")
-    await call_py.start()
-    print("[INFO]: PYTGCALLS CLIENT STARTED !!")
-
+    
 
 loop = asyncio.get_event_loop_policy().get_event_loop()
 loop.run_until_complete(load_start())
