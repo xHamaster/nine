@@ -424,7 +424,7 @@ async def vplay(c: Client, m: Message):
                 buttons = stream_markup(user_id)
                 await m.reply_photo(
                     photo=f"{IMG_2}",
-                    reply_markup=InlineKeyboardMarkup(buttons),
+                    reply_markup=InlineKeyboardMarkup(others_markup),
                     caption=f"❰ 𝗙𝗮𝗹𝗹𝗲𝗻 ❘ 𝗠𝘂𝘀𝗶𝗰 ❱ ❤ 𝗡𝗼𝘄 🤘 𝗣𝗹𝗮𝘆𝗶𝗻𝗴 📀 𝗙𝗿𝗼𝗺 🔊 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 🚩 𝗣𝗮𝘃𝗮𝗻 😎 𝗦𝗲𝗿𝘃𝗲𝗿...🤞\n**User :** {requester}\n**Stream type :** `Video`",
                 )
         else:
@@ -484,7 +484,7 @@ async def vplay(c: Client, m: Message):
                                 buttons = stream_markup(user_id)
                                 await m.reply_photo(
                                     photo=image,
-                                    reply_markup=InlineKeyboardMarkup(buttons),
+                                    reply_markup=InlineKeyboardMarkup(others_markup),
                                     caption=f"❰ 𝗙𝗮𝗹𝗹𝗲𝗻 ❘ 𝗠𝘂𝘀𝗶𝗰 ❱ ❤ 𝗡𝗼𝘄 🤘 𝗣𝗹𝗮𝘆𝗶𝗻𝗴 📀 𝗙𝗿𝗼𝗺 🔊 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 🚩 𝗣𝗮𝘃𝗮𝗻 😎 𝗦𝗲𝗿𝘃𝗲𝗿...🤞\n**User :** {requester}\n**Stream type :** `Video`",
                                 )
                             except Exception as ep:
@@ -546,7 +546,7 @@ async def vplay(c: Client, m: Message):
                             buttons = stream_markup(user_id)
                             await m.reply_photo(
                                 photo=image,
-                                reply_markup=InlineKeyboardMarkup(buttons),
+                                reply_markup=InlineKeyboardMarkup(others_markup),
                                 caption=f"❰ 𝗙𝗮𝗹𝗹𝗲𝗻 ❘ 𝗠𝘂𝘀𝗶𝗰 ❱ ❤ 𝗡𝗼𝘄 🤘 𝗣𝗹𝗮𝘆𝗶𝗻𝗴 📀 𝗙𝗿𝗼𝗺 🔊 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 🚩 𝗣𝗮𝘃𝗮𝗻 😎 𝗦𝗲𝗿𝘃𝗲𝗿...🤞\n**User :** {requester}\n**Stream type :** `Video`",
                             )
                         except Exception as ep:
