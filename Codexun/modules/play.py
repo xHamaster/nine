@@ -149,7 +149,7 @@ async def generate_cover(requested_by, title, views, duration, ctitle, thumbnail
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 590),
-        f"Request: {message.chat.title}",
+        f"Request: {ctitle}",
         (255, 255, 255),
         font=font,
     )
