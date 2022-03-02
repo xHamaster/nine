@@ -3,7 +3,7 @@ import requests
 from pyrogram import Client
 from pytgcalls import idle
 from Codexun import app
-from Codexun.driver.veez import call_py, bot
+from driver.veez import call_py, bot
 from Codexun.database.functions import clean_restart_stage
 from Codexun.database.queue import get_active_chats, remove_active_chat
 from Codexun.tgcalls.calls import run
