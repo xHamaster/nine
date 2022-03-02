@@ -502,11 +502,18 @@ Here is the official update channel of this bot. Kindly join it for regular upda
 
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
-    await query.edit_message_text(
-   reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Join Here", url=f"https://t.me/Codexun")],
-              [InlineKeyboardButton("🔙", callback_data="cbhome")]]
-        ),
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+ else:
+      await query.edit_message_text(
+     f"""Menu Section Successfully Opened !""",
+        reply_markup=menu_keyboard
     )
     
 
@@ -631,7 +638,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ☃", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
@@ -672,7 +679,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ☃", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
@@ -804,7 +811,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ☃", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
