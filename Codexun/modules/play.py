@@ -113,7 +113,7 @@ def changeImageSize(maxWidth, maxHeight, image):
 
 
 
-async def generate_cover(requested_by, title, views, duration, ctitle, thumbnail):
+async def generate_cover(requested_by, title, views, duration, chat_title, thumbnail):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
@@ -151,7 +151,7 @@ async def generate_cover(requested_by, title, views, duration, ctitle, thumbnail
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 590),
-        f"Request: {ctitle}",
+        f"Request: {chat_title}",
         (255, 255, 255),
         font=font,
     )
