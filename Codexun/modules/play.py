@@ -382,6 +382,9 @@ You can also open this menu through /menu and /settings command.
 **Only admins can use this buttons 📍**""",
         reply_markup=InlineKeyboardMarkup(
             [
+            [InlineKeyboardButton("🔙  Back Home", callback_data="set_pause")],
+            [InlineKeyboardButton("🔙  Back Home", callback_data="set_resume")],
+            [InlineKeyboardButton("🔙  Back Home", callback_data="set_stop")]
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
         ),
     )
