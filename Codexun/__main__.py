@@ -41,7 +41,7 @@ async def load_start():
             print("Error came while clearing db")
             pass
     print("[INFO]: STARTED")
-            await call_py.start()
+    await call_py.start()
     print("[INFO]: PYTGCALLS CLIENT STARTED !!")
 
 
