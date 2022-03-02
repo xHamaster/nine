@@ -135,20 +135,20 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((90, 480),
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
+    draw.text((90, 490),
         f"Views: {views}",
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((90, 520),
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
+    draw.text((90, 540),
         f"Duration: {duration} minutes",
         (255, 255, 255),
         font=font,
     )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((90, 570),
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
+    draw.text((90, 590),
         f"Request: Resso Music Bot",
         (255, 255, 255),
         font=font,
