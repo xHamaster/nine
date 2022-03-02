@@ -117,25 +117,42 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.write(await resp.read())
                 await f.close()
 
-    image = Image.open(f"background.png")
-    black = Image.open("Utils/black.jpg")
-    circle = Image.open("Utils/circle.png")
-    image1 = changeImageSize(1280, 720, image)
-    image1 = image1.filter(ImageFilter.BoxBlur(10))
-    
-   # Cropping circle from thubnail
-    image3 = image1.crop((280,0,1000,720))
-    lum_img = Image.new('L', [720,720] , 0)
-    draw = ImageDraw.Draw(lum_img)
-    draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
-    image3 = image3.resize((600,600))
-   
-
-    
-    image3.save(f"final.png")
-    os.remove(f"background.png")
-    final = f"temp.png"
-    return final
+    image1 = Image.open("./background.png")
+    image2 = Image.open("etc/foreground.png")
+    image3 = changeImageSize(1280, 1280, image1)
+    image4 = changeImageSize(1280, 1280, image2)
+    image5 = image3.convert("RGBA")
+    image6 = image4.convert("RGBA")
+    Image.alpha_composite(image5, image6).save("temp.png")
+    img = Image.open("temp.png")
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("etc/Codexun.otf", 65)
+    draw.text((22, 260),
+        f"{title}..",
+        (255, 255, 255),
+        font=font,
+    )
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
+    draw.text((25, 330),
+        f"Views: {views}",
+        (255, 255, 255),
+        font=font,
+    )
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
+    draw.text((25, 380),
+        f"Duration: {duration} minutes",
+        (255, 255, 255),
+        font=font,
+    )
+    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
+    draw.text((25, 430),
+        f"Request: {requested_by}",
+        (255, 255, 255),
+        font=font,
+    )
+    img.save("final.png")
+    os.remove("temp.png")
+    os.remove("background.png")
     
 
 
