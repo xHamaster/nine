@@ -111,7 +111,7 @@ def changeImageSize(maxWidth, maxHeight, image):
 
 
 
-async def generate_cover(requested_by, title, views, duration, thumbnail):
+async def generate_cover(requested_by, title, views, duration, message.chat.title, thumbnail):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
@@ -149,7 +149,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
     draw.text((90, 590),
-        f"Request: Resso Music Bot",
+        f"Request: {message.chat.title}",
         (255, 255, 255),
         font=font,
     )
@@ -806,7 +806,7 @@ async def play(_, message: Message):
             )
             return
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)
+        await generate_cover(requested_by, title, views, duration, message.chat.title, thumbnail)
 
         def my_hook(d):
             if d["status"] == "downloading":
