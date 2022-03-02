@@ -10,7 +10,6 @@ import aiohttp
 import yt_dlp
 import aiohttp
 import random
-import numpy as np
 
 from os import path
 from typing import Union
@@ -123,34 +122,34 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image1 = Image.open("./background.png")
     image2 = Image.open("etc/foreground.png")
     image1 = image1.filter(ImageFilter.BoxBlur(10))
-    image3 = changeImageSize(1280, 1280, image1)
-    image4 = changeImageSize(1280, 1280, image2)
+    image3 = changeImageSize(1024, 1024, image1)
+    image4 = changeImageSize(1024, 1024, image2)
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("Utils/arial_black.ttf", 90)
-    draw.text((95, 400),
+    font = ImageFont.truetype("etc/Codexun.otf", 90)
+    draw.text((90, 400),
         f"{title}..",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((25, 330),
+    draw.text((90, 480),
         f"Views: {views}",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((25, 380),
+    draw.text((90, 520),
         f"Duration: {duration} minutes",
         (255, 255, 255),
         font=font,
     )
     font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 40)
-    draw.text((25, 430),
-        f"Request: Resso Music",
+    draw.text((90, 570),
+        f"Request: Resso Music Bot",
         (255, 255, 255),
         font=font,
     )
