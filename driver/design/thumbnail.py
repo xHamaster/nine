@@ -17,17 +17,17 @@ async def thumb(thumbnail, title, userid, ctitle):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open(f"driver/source/20220227_215805.jpg", mode="wb")
+                f = await aiofiles.open(f"driver/source/81671ed0156630ad5db4e.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-    image1 = Image.open(f"driver/source/20220227_215805.jpg")
+    image1 = Image.open(f"driver/source/81671ed0156630ad5db4e.png")
     image2 = Image.open("driver/source/LightBlue.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
-    Image.alpha_composite(image5, image6).save(f"driver/source/20220227_21580.jpg")
-    img = Image.open(f"driver/source/20220227_215805.jpg")
+    Image.alpha_composite(image5, image6).save(f"driver/source/81671ed0156630ad5db4.png")
+    img = Image.open(f"driver/source/81671ed0156630ad5db4.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("driver/source/regular.ttf", 52)
     font2 = ImageFont.truetype("driver/source/medium.ttf", 76)
@@ -45,6 +45,6 @@ async def thumb(thumbnail, title, userid, ctitle):
     )
     img.save(f"search/final{userid}.png")
     os.remove(f"search/temp{userid}.png")
-    os.remove(f"search/source/20220227_21580.jpg")
+    os.remove(f"search/source/81671ed0156630ad5db4.png")
     final = f"search/final{userid}.png"
     return final
