@@ -186,6 +186,72 @@ menu_keyboard = InlineKeyboardMarkup(
 
 
 
+@Client.on_callback_query(filters.regex("set_pause"))
+@check_blacklist()
+async def cbpause(_, query: CallbackQuery):
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("💡 Only admin with manage video chat permission that can tap this button !", show_alert=True)
+    chat_id = query.message.chat.id
+    if chat_id in QUEUE:
+        try:
+            if not await is_music_playing(chat_id):
+                await query.answer("ℹ️ The music is already paused.", show_alert=True)
+                return
+            await calls.pause_stream(chat_id)
+            await music_off(chat_id)
+            await query.answer("⏸ The music has paused !\n\n» to resume the music click on resume button !", show_alert=True)
+        except Exception as e:
+            traceback.print_exc()
+            await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=close_mark)
+    else:
+        await query.answer("❌ nothing is currently streaming", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("set_resume"))
+@check_blacklist()
+async def cbresume(_, query: CallbackQuery):
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("💡 Only admin with manage video chat permission that can tap this button !", show_alert=True)
+    chat_id = query.message.chat.id
+    if chat_id in QUEUE:
+        try:
+            if await is_music_playing(chat_id):
+                await query.answer("ℹ️ The music is already resumed.", show_alert=True)
+                return
+            await calls.resume_stream(chat_id)
+            await music_on(chat_id)
+            await query.answer("▶️ The music has resumed !\n\n» to pause the music click on pause button !", show_alert=True)
+        except Exception as e:
+            traceback.print_exc()
+            await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=close_mark)
+    else:
+        await query.answer("❌ nothing is currently streaming", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("set_stop"))
+@check_blacklist()
+async def cbstop(_, query: CallbackQuery):
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("💡 Only admin with manage video chat permission that can tap this button !", show_alert=True)
+    chat_id = query.message.chat.id
+    if chat_id in QUEUE:
+        try:
+            await calls.leave_group_call(chat_id)
+            await remove_active_chat(chat_id)
+            clear_queue(chat_id)
+            await query.edit_message_text("✅ **this streaming has ended**", reply_markup=close_mark)
+        except Exception as e:
+            traceback.print_exc()
+            await query.edit_message_text(f"🚫 **error:**\n\n`{e}`", reply_markup=close_mark)
+    else:
+        await query.answer("❌ nothing is currently streaming", show_alert=True)
+
+
+
+
 # Veez ka h ye 
 # Vstream Bhe H 
 
