@@ -68,6 +68,7 @@ from Codexun.utils.gets import get_url, get_file_name
 from Codexun.modules.admins import member_permissions
 
 from Codexun.utils.chattitle import CHAT_TITLE
+ctitle = message.chat.title
 
 # plus
 chat_id = None
