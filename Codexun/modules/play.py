@@ -378,7 +378,7 @@ This bot helps you to play music, to search music from youtube and to download m
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Source Code", callback_data="cbsource")
+            [InlineKeyboardButton("Source Code", callback_data="cbsource"),
              InlineKeyboardButton("Need Help", callback_data="cbhelp")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
@@ -421,7 +421,7 @@ async def cbhelp(_, query: CallbackQuery):
 **- @Noob_Aayu**
 **- @QnNikku**
 
-**• Special Thanks**
+**• Powered by**
 **- @Codexun**
 
 **Note : Some kangers thinking this bot is deployed from their repo. Fuck off bruh, You really great !**""",
@@ -453,8 +453,8 @@ async def cbguide(_, query: CallbackQuery):
         ),
     )
 
-@Client.on_callback_query(filters.regex("cbguide"))
-async def cbguide(_, query: CallbackQuery):
+@Client.on_callback_query(filters.regex("cbsource"))
+async def cbsource(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Source Code 💡**
 
