@@ -361,7 +361,7 @@ async def cbcmnds(_, query: CallbackQuery):
 Powered by **Resso Music** !""",
         reply_markup=InlineKeyboardMarkup(
             [
-              [InlineKeyboardButton("Menu Buttons", callback_data="cbmenu")],
+              [InlineKeyboardButton("Menu Buttons", callback_data="cbstgs")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -378,13 +378,14 @@ This bot helps you to play music, to search music from youtube and to download m
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Need Help", callback_data="cbhelp")],
+            [InlineKeyboardButton("Source Code", callback_data="cbsource")
+             InlineKeyboardButton("Need Help", callback_data="cbhelp")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
-@Client.on_callback_query(filters.regex("cbfuck"))
-async def cbmenu(_, query: CallbackQuery):
+@Client.on_callback_query(filters.regex("cbstgs"))
+async def cbstgs(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Menu Buttons 💡**
 
@@ -415,15 +416,18 @@ async def cbhelp(_, query: CallbackQuery):
 **[Resso Music Bot](https://t.me/RessoMusicBot)**
 
 **• Bot Managed By** 
-**- #one_noob**
+**- @iSmartAnkit**
+**- @PavanMagar**
+**- @Noob_Aayu**
+**- @QnNikku**
 
 **• Special Thanks**
-**- #no_need**
+**- @Codexun**
 
 **Note : Some kangers thinking this bot is deployed from their repo. Fuck off bruh, You really great !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Contact If really Need Help", url=f"https://t.me/RessoSupportBot")],
+            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
@@ -446,6 +450,19 @@ async def cbguide(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Try Inline Search", switch_inline_query_current_chat="")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cbguide"))
+async def cbguide(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**About Source Code 💡**
+
+Listen, Source Code of this bot is not complete yet. We trying to add some more features, it will be soon public on @Codexun. You can join update channel for updates about source code.""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
 
@@ -510,11 +527,11 @@ async def cbmenu(_, query: CallbackQuery):
         return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
     a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
     if not a.can_manage_voice_chats:
-        return await query.answer("💡 ᴏɴʟʏ ᴀᴅᴍɪɴ ᴡɪᴛʜ ᴍᴀɴᴀɢᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛꜱ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛʜᴀᴛ ᴄᴀɴ ᴛᴀᴘ ᴛʜɪꜱ ʙᴜᴛᴛᴏɴ. ᴛʜɪꜱ ɪꜱ ᴛʜᴇ ꜱᴇᴄᴜʀɪᴛʏ ᴏꜰ ᴛʜᴇ ᴄʀᴇᴀᴛᴏʀ ᴘᴀᴠᴀɴ..!", show_alert=True)
+        return await query.answer("Only admins cam use this..!", show_alert=True)
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"⚙️ **ᴘᴀᴠᴀɴ ᴍᴇɴᴜ ꜱᴇᴛᴛɪɴɢꜱ ꜰᴏʀ**\n\n {query.message.chat.title}\n\n• ▷\n- Resume Music\n• II\n- Pause Music\n• ▢\n- End Music\n\n**You can open this throug /menu also 📍**",
+              f"**Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋\n Menu section of music player successfully opened for your chat {query.message.chat.title}, Use the buttons given below to manage.\n\n You can use `/menu` also 📍",
 
               reply_markup=menu_keyboard
          )
@@ -643,9 +660,9 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
+            InlineKeyboardButton("Support •", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Close ⌧", callback_data="cls"),
+            InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
     ]
@@ -684,9 +701,9 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
+            InlineKeyboardButton("Support •", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Close ⌧", callback_data="cls"),
+            InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
     ]
@@ -816,9 +833,9 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
+            InlineKeyboardButton("Support •", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Close ⌧", callback_data="cls"),
+            InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
     ]
@@ -904,7 +921,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**💁🏻‍♂ Played by :** **{}**\n🎥 **Playing at : [{}](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
