@@ -447,7 +447,7 @@ async def cbguide(_, query: CallbackQuery):
 • Now play your song and enjoy !""",
         reply_markup=InlineKeyboardMarkup(
             [[
-              InlineKeyboardButton("Errors", callback_data="cberror")
+              InlineKeyboardButton("Errors", callback_data="cberror"),
               InlineKeyboardButton("Inline Search", switch_inline_query_current_chat="")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
