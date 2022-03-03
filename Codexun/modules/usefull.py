@@ -52,7 +52,7 @@ async def telegraph(client, message):
 # ====== TELEGRAPH ======
 
 @Client.on_message(
-    filters.command("purge", COMMAND_HAND_LER) &
+    filters.command("purge") &
     admin_fliter
 )
 async def purge(client, message):
@@ -96,8 +96,7 @@ async def purge(client, message):
 
 
 @Client.on_message(
-    filters.command(["id"], COMMAND_HAND_LER) &
-    f_onw_fliter
+    filters.command(["id"])
 )
 async def showid(client, message):
     chat_type = message.chat.type
@@ -145,8 +144,7 @@ async def showid(client, message):
 
 
 @Client.on_message(
-    filters.command(["whois", "info"], COMMAND_HAND_LER) &
-    f_onw_fliter
+    filters.command(["whois", "info"])
 )
 async def who_is(client, message):
     """ extract user information """
