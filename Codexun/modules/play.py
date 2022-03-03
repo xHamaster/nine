@@ -422,7 +422,7 @@ async def cbhelp(_, query: CallbackQuery):
 **• Powered by**
 **- @Codexun**
 
-**Note : Contact developers only that time if you are really need a help or facing any type of error. Don't waste our and your time by asking useless queries !**""",
+**Note : Contact developers only that time if you have really need a help or facing any type of issues. Don't try to waste our and your time by asking useless queries !**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
@@ -680,8 +680,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -721,8 +721,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -853,8 +853,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
