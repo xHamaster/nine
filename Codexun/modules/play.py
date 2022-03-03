@@ -441,14 +441,14 @@ async def cbtools(_, query: CallbackQuery):
 • /id
 - Get replied user id
 
-• /telegraph or/tg
+• /telegraph or /tgm
 - Get telegraph link of photo
 
 
 **More tools coming soon..**""",
         reply_markup=InlineKeyboardMarkup(
             [
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnd")]]
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
         ),
     )
 @Client.on_callback_query(filters.regex("cbguide"))
@@ -497,7 +497,7 @@ mostly, there wiil be the main error about to music assistant. If you are facing
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Contact Developers", callback_data="cbhelp")],
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbguide")]]
         ),
     )
 
