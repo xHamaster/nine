@@ -45,17 +45,114 @@ async def telegraph(client, message):
     except Exception as document:
         await message.reply(message, text=document)
     else:
-        await message.reply(f"**[Here's Your Telegraph Link](https://telegra.ph{response[0]})**", disable_web_page_preview=False)
+        await message.reply(f"**Here's Your [Telegraph Link](https://telegra.ph{response[0]})**", disable_web_page_preview=False)
     finally:
         os.remove(download_location)
 
 # ====== TELEGRAPH ======
 
+@Client.on_message(
+    filters.command("purge", COMMAND_HAND_LER) &
+    admin_fliter
+)
+async def purge(client, message):
+    """ purge upto the replied message """
+    if message.chat.type not in (("supergroup", "channel")):
+        # https://t.me/c/1312712379/84174
+        return
 
-@Client.on_message(filters.command(["whois", "info"]))
+    status_message = await message.reply_text("Processing..", quote=True)
+    await message.delete()
+    message_ids = []
+    count_del_etion_s = 0
+
+    if message.reply_to_message:
+        for a_s_message_id in range(
+            message.reply_to_message.message_id,
+            message.message_id
+        ):
+            message_ids.append(a_s_message_id)
+            if len(message_ids) == TG_MAX_SELECT_LEN:
+                await client.delete_messages(
+                    chat_id=message.chat.id,
+                    message_ids=message_ids,
+                    revoke=True
+                )
+                count_del_etion_s += len(message_ids)
+                message_ids = []
+        if len(message_ids) > 0:
+            await client.delete_messages(
+                chat_id=message.chat.id,
+                message_ids=message_ids,
+                revoke=True
+            )
+            count_del_etion_s += len(message_ids)
+
+    await status_message.edit_text(
+        f"deleted {count_del_etion_s} messages"
+    )
+    await asyncio.sleep(5)
+    await status_message.delete()
+
+
+@Client.on_message(
+    filters.command(["id"], COMMAND_HAND_LER) &
+    f_onw_fliter
+)
+async def showid(client, message):
+    chat_type = message.chat.type
+
+    if chat_type == "private":
+        user_id = message.chat.id
+        await message.reply_text(
+            f"<code>{user_id}</code>",
+            quote=True
+        )
+
+    elif chat_type in ["group", "supergroup"]:
+        _id = ""
+        _id += (
+            "<b>Chat ID</b>: "
+            f"<code>{message.chat.id}</code>\n"
+        )
+        if message.reply_to_message:
+            _id += (
+                "<b>Replied User ID</b>: "
+                f"<code>{message.reply_to_message.from_user.id}</code>\n"
+            )
+            file_info = get_file_id(message.reply_to_message)
+            if file_info:
+                _id += (
+                    f"<b>{file_info.message_type}</b>: "
+                    f"<code>{file_info.file_id}</code>\n"
+                )
+        else:
+            _id += (
+                "<b>User ID</b>: "
+                f"<code>{message.from_user.id}</code>\n"
+            )
+            file_info = get_file_id(message)
+            if file_info:
+                _id += (
+                    f"<b>{file_info.message_type}</b>: "
+                    f"<code>{file_info.file_id}</code>\n"
+                )
+        await message.reply_text(
+            _id,
+            quote=True
+        )
+
+
+
+@Client.on_message(
+    filters.command(["whois", "info"], COMMAND_HAND_LER) &
+    f_onw_fliter
+)
 async def who_is(client, message):
     """ extract user information """
-    status_message = await message.reply_text("`Getting Information....`")
+    status_message = await message.reply_text(
+        "🔎"
+    )
     from_user = None
     from_user_id, _ = extract_user(message)
     try:
@@ -72,12 +169,11 @@ async def who_is(client, message):
     username = from_user.username or ""
     
     message_out_str = (
-        "<b>Name:</b> "
-        f"<a href='tg://user?id={from_user.id}'>{first_name}</a>\n"
-        f"<b>Suffix:</b> {last_name}\n"
-        f"<b>Username:</b> @{username}\n"
-        f"<b>User ID:</b> <code>{from_user.id}</code>\n"
-        f"<b>User Link:</b> {from_user.mention}\n" if from_user.username else ""
+        "<b>From Telegram Database</b>\n\n"
+        f"<b>• Name : <a href='tg://user?id={from_user.id}'>{first_name}</a></b>\n"
+        f"<b>• ID :</b> <code>{from_user.id}</code>\n"
+        f"<b>• User :</b> @{username}\n"
+        f"<b>• Link :</b> {from_user.mention}\n" if from_user.username else ""
         f"<b>Is Deleted:</b> True\n" if from_user.is_deleted else ""
         f"<b>Is Verified:</b> True" if from_user.is_verified else ""
         f"<b>Is Scam:</b> True" if from_user.is_scam else ""
@@ -92,9 +188,10 @@ async def who_is(client, message):
                 chat_member_p.joined_date or time.time()
             ).strftime("%Y.%m.%d %H:%M:%S")
             message_out_str += (
-                "<b>Joined on:</b> <code>"
+                "<b>• Lastseen :</b> <code>"
                 f"{joined_date}"
                 "</code>\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
             )
         except UserNotParticipant:
             pass
