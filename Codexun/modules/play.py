@@ -448,7 +448,7 @@ async def cbguide(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [[
               InlineKeyboardButton("Errors", callback_data="cberror"),
-              InlineKeyboardButton("Inline Search", switch_inline_query_current_chat="")],
+              InlineKeyboardButton("Inline", switch_inline_query_current_chat="")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -471,7 +471,7 @@ async def cberror(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**Mostly Faced Errors 💡**
 
-mostly, there wiil be the error about to music assistant. If you are facing any type of error in your group then that time make sure @RessoMusicAssistant is available in your group. If not then add it manually and before that make sure also it is not banned in ur chat./n/n**Assistant :- @RessoMusicAssistant**""",
+mostly, there wiil be the error about to music assistant. If you are facing any type of error in your group then that time make sure @RessoMusicAssistant is available in your group. If not then add it manually and before that make sure also it is not banned in ur chat.\n\n**Assistant :- @RessoMusicAssistant**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
@@ -544,7 +544,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**Manage Music System 💡\nMenu section of music player successfully opened for your chat {query.message.chat.title}, Use the buttons given below to manage.\n\n You can use `/menu` cmnd also 📍",
+              f"**Manage Music System 💡\n\nMenu section of music player successfully opened for your chat {query.message.chat.title}. Use the buttons given below to manage.\n\n You can use `/menu` also 📍",
 
               reply_markup=menu_keyboard
          )
@@ -673,7 +673,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ❏", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -716,7 +716,7 @@ async def play(_, message: Message):
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
             InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Close 🗑️", callback_data="cls"),
+            InlineKeyboardButton("Close ❏", callback_data="cls"),
         ],
         
     ]
@@ -846,7 +846,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ❏", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
