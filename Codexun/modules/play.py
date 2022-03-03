@@ -361,7 +361,8 @@ async def cbcmnds(_, query: CallbackQuery):
 Powered by **Resso Music** !""",
         reply_markup=InlineKeyboardMarkup(
             [
-              [InlineKeyboardButton("Menu Buttons", callback_data="cbstgs")],
+              [InlineKeyboardButton("Tools", callback_data="cbtools"),
+               InlineKeyboardButton("Menu", callback_data="cbstgs")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -427,6 +428,27 @@ async def cbhelp(_, query: CallbackQuery):
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+        ),
+    )
+@Client.on_callback_query(filters.regex("cbtools"))
+async def cbtools(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Some Basic Useful Tools 💡**
+
+• /info or /whois
+- Get user information
+
+• /id
+- Get replied user id
+
+• /telegraph or/tg
+- Get telegraph link of photo
+
+
+**More tools coming soon..**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnd")]]
         ),
     )
 @Client.on_callback_query(filters.regex("cbguide"))
