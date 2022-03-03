@@ -25,4 +25,3 @@ youtube-search
 yt-dlp
 telegraph
 html5lib
-numpy
