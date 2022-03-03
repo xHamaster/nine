@@ -701,7 +701,14 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         
-       [
+      [
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ], [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
             InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
@@ -743,6 +750,13 @@ async def play(_, message: Message):
     [
         
        [
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
             InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
@@ -875,6 +889,13 @@ async def play(_, message: Message):
     [
         
        [
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
             InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
