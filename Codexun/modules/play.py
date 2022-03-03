@@ -522,8 +522,8 @@ async def closed(_, query: CallbackQuery):
         )
     await query.message.delete()
 
-@Client.on_callback_query(filters.regex(pattern=r"^(vlm)$"))
-async def closed(_, query: CallbackQuery):
+@Client.on_callback_query(filters.regex("vlm"))
+async def volume(_, query: CallbackQuery):
     await query.answer(
             "Coming soon...",
             show_alert=True,
@@ -929,7 +929,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**Downloaded Successfully**\n\n**{title[:50]}.....\n\n**FileSize:** `{size}`\n■■■■■■■■■■ `100%`**Time Taken:** `{taken}` sec\n\n**__FFmpeg processing__**"
+                    f"**Downloaded Successfully**\n\n**{title[:50]}...\n\n**FileSize:** `{size}`\n■■■■■■■■■■ `100%`\n**Time Taken:** `{taken} sec`\n\n<b>__FFmpeg processing...__</b>"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
