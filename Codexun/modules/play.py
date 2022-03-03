@@ -502,18 +502,12 @@ Here is the official update channel of this bot. Kindly join it for regular upda
 
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
-    from_user = query.from_user
-    permissions = await member_permissions(query.message.chat.id, from_user.id)
-    permission = "can_restrict_members"
-    if permission not in permissions:
-        return await query.answer(
-            "You don't have enough permissions to perform this action.",
-            show_alert=True,
-        )
-      await query.edit_message_text(
-     f"""Menu Section Successfully Opened !""",
+    await query.edit_message_text(
+        f"""Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
+Here is the official update channel of this bot. Kindly join it for regular updates from us..!""",
         reply_markup=menu_keyboard
     )
+
     
 
 
