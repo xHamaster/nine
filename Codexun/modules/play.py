@@ -198,7 +198,7 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Volume", callback_data=f"cbvolume"),
+            InlineKeyboardButton(text="Volume", callback_data=f"vlm"),
              InlineKeyboardButton(text="Search", switch_inline_query_current_chat=""),
         ],[
             InlineKeyboardButton(text="Support", callback_data=f"cbsupport"),
@@ -422,7 +422,7 @@ async def cbhelp(_, query: CallbackQuery):
 **• Powered by**
 **- @Codexun**
 
-**Note : Some kangers thinking this bot is deployed from their repo. Fuck off bruh, You really great !**""",
+**Note : Contact developers only that time if you are really need a help or facing any type of error. Don't waste our and your time by asking useless queries !**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
@@ -521,6 +521,14 @@ async def closed(_, query: CallbackQuery):
             show_alert=True,
         )
     await query.message.delete()
+
+@Client.on_callback_query(filters.regex(pattern=r"^(vlm)$"))
+async def closed(_, query: CallbackQuery):
+    await query.answer(
+            "Coming soon...",
+            show_alert=True,
+        )
+    
 
 
 @Client.on_callback_query(filters.regex("cbsupport"))
