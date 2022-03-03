@@ -502,13 +502,31 @@ Here is the official update channel of this bot. Kindly join it for regular upda
 
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
-Here is the official update channel of this bot. Kindly join it for regular updates from us..!""",
-        reply_markup=menu_keyboard
-    )
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("💡 ᴏɴʟʏ ᴀᴅᴍɪɴ ᴡɪᴛʜ ᴍᴀɴᴀɢᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛꜱ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛʜᴀᴛ ᴄᴀɴ ᴛᴀᴘ ᴛʜɪꜱ ʙᴜᴛᴛᴏɴ. ᴛʜɪꜱ ɪꜱ ᴛʜᴇ ꜱᴇᴄᴜʀɪᴛʏ ᴏꜰ ᴛʜᴇ ᴄʀᴇᴀᴛᴏʀ ᴘᴀᴠᴀɴ..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if chat_id in QUEUE:
+          await query.edit_message_text(
+              f"⚙️ **ᴘᴀᴠᴀɴ ᴍᴇɴᴜ ꜱᴇᴛᴛɪɴɢꜱ ꜰᴏʀ**\n\n {query.message.chat.title}\n\n⏸ : ᴘᴀᴜꜱᴇ\n▶️ : ʀᴇꜱᴜᴍᴇ\n🔇 : ᴍᴜᴛᴇ\n🔊 : ᴜɴᴍᴜᴛᴇ\n⏹ : ꜱᴛʀᴇᴀᴍ ꜱᴛᴏᴘ\n\n© @TheCreatorPavan",
+              reply_markup=InlineKeyboardMarkup(
+                  [[
+                      InlineKeyboardButton("⏹", callback_data="cbstop"),
+                      InlineKeyboardButton("⏸", callback_data="cbpause"),
+                      InlineKeyboardButton("▶️", callback_data="cbresume"),
+                  ],[
+                      InlineKeyboardButton("🔇", callback_data="cbmute"),
+                      InlineKeyboardButton("🔊", callback_data="cbunmute"),
+                  ],[
+                      InlineKeyboardButton("🗑 ᴄʟᴏꜱᴇ ᴍᴇɴᴜ", callback_data="cls")],
+                  ]
+             ),
+         )
+    else:
+        await query.answer("❌ nothing is currently streaming", show_alert=True)
 
-    
 
 
 # play
