@@ -198,7 +198,11 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Close", callback_data=f"cls"),
+            InlineKeyboardButton(text="Volume", callback_data=f"cbvolume"),
+             InlineKeyboardButton(text="Search", switch_inline_query_current_chat=""),
+        ],[
+            InlineKeyboardButton(text="Support", callback_data=f"cbsupport"),
+             InlineKeyboardButton(text="Close", callback_data=f"cls"),
         ],
     ]
 )
@@ -492,11 +496,11 @@ async def closed(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("cbsupport"))
 async def cbsupport(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
-Here is the official update channel of this bot. Kindly join it for regular updates from us..!""",
+        f"""**Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
+Here is the official update channel of this bot. Kindly join it for regular updates from us..!**""",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Join Here", url=f"https://t.me/Codexun")],
-              [InlineKeyboardButton("🔙", callback_data="cbhome")]]
+              [InlineKeyboardButton("⌧", callback_data="cls")]]
         ),
     )
 
@@ -510,19 +514,18 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"⚙️ **ᴘᴀᴠᴀɴ ᴍᴇɴᴜ ꜱᴇᴛᴛɪɴɢꜱ ꜰᴏʀ**\n\n {query.message.chat.title}\n\n⏸ : ᴘᴀᴜꜱᴇ\n▶️ : ʀᴇꜱᴜᴍᴇ\n🔇 : ᴍᴜᴛᴇ\n🔊 : ᴜɴᴍᴜᴛᴇ\n⏹ : ꜱᴛʀᴇᴀᴍ ꜱᴛᴏᴘ\n\n© @TheCreatorPavan",
-              reply_markup=InlineKeyboardMarkup(
-                  [[
-                      InlineKeyboardButton("⏹", callback_data="cbstop"),
-                      InlineKeyboardButton("⏸", callback_data="cbpause"),
-                      InlineKeyboardButton("▶️", callback_data="cbresume"),
-                  ],[
-                      InlineKeyboardButton("🔇", callback_data="cbmute"),
-                      InlineKeyboardButton("🔊", callback_data="cbunmute"),
-                  ],[
-                      InlineKeyboardButton("🗑 ᴄʟᴏꜱᴇ ᴍᴇɴᴜ", callback_data="cls")],
-                  ]
-             ),
+              f"⚙️ **Successfully Opened menu section for {query.message.chat.title}**\n\n
+• ▷ 
+- Resume Music
+• II 
+- Pause Music
+• ▢  
+- End Music
+• ‣‣ 
+- Skip Music
+
+**You can open this throug /menu also 📍**",
+              reply_markup=menu_keyboard
          )
     else:
         await query.answer("❌ nothing is currently streaming", show_alert=True)
@@ -649,7 +652,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
@@ -690,7 +693,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
@@ -822,7 +825,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⇪", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ♮", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close ⌧", callback_data="cls"),
         ],
