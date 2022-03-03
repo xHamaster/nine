@@ -514,7 +514,8 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"⚙️ **Successfully Opened menu section for {query.message.chat.title}**\n\n
+              f"⚙️ **Successfully Opened menu section for** {query.message.chat.title}
+
 • ▷ 
 - Resume Music
 • II 
@@ -528,7 +529,7 @@ async def cbmenu(_, query: CallbackQuery):
               reply_markup=menu_keyboard
          )
     else:
-        await query.answer("❌ nothing is currently streaming", show_alert=True)
+        await query.answer("nothing is currently streaming", show_alert=True)
 
 
 
