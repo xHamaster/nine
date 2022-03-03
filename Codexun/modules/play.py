@@ -509,7 +509,7 @@ async def cbmenu(_, query: CallbackQuery):
     if not a.can_manage_voice_chats:
         return await query.answer("💡 ᴏɴʟʏ ᴀᴅᴍɪɴ ᴡɪᴛʜ ᴍᴀɴᴀɢᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛꜱ ᴘᴇʀᴍɪꜱꜱɪᴏɴ ᴛʜᴀᴛ ᴄᴀɴ ᴛᴀᴘ ᴛʜɪꜱ ʙᴜᴛᴛᴏɴ. ᴛʜɪꜱ ɪꜱ ᴛʜᴇ ꜱᴇᴄᴜʀɪᴛʏ ᴏꜰ ᴛʜᴇ ᴄʀᴇᴀᴛᴏʀ ᴘᴀᴠᴀɴ..!", show_alert=True)
     chat_id = query.message.chat.id
-    if is_music_playing(chat_id):
+    if is_music_playing(chat_id)
           await query.edit_message_text(
               f"⚙️ **ᴘᴀᴠᴀɴ ᴍᴇɴᴜ ꜱᴇᴛᴛɪɴɢꜱ ꜰᴏʀ**\n\n {query.message.chat.title}\n\n⏸ : ᴘᴀᴜꜱᴇ\n▶️ : ʀᴇꜱᴜᴍᴇ\n🔇 : ᴍᴜᴛᴇ\n🔊 : ᴜɴᴍᴜᴛᴇ\n⏹ : ꜱᴛʀᴇᴀᴍ ꜱᴛᴏᴘ\n\n© @TheCreatorPavan",
               reply_markup=InlineKeyboardMarkup(
