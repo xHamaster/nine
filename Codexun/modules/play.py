@@ -929,7 +929,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**Downloading Music** {title[:50]}.....\n\n**FileSize:** {size}\n**Time Taken:** {taken} sec\n\n**Converting File****[__FFmpeg processing__]**"
+                    f"**Downloaded Successfully**\n\n**{title[:50]}.....\n\n**FileSize:** `{size}`\n■■■■■■■■■■ `100%`**Time Taken:** `{taken}` sec\n\n**__FFmpeg processing__**"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
