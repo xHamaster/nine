@@ -514,18 +514,8 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"⚙️ **Successfully Opened menu section for** {query.message.chat.title}
+              f"⚙️ **ᴘᴀᴠᴀɴ ᴍᴇɴᴜ ꜱᴇᴛᴛɪɴɢꜱ ꜰᴏʀ**\n\n {query.message.chat.title}\n\n• ▷\n- Resume Music\n• II\n- Pause Music\n• ▢\n- End Music\n\n**You can open this throug /menu also 📍**",
 
-• ▷ 
-- Resume Music
-• II 
-- Pause Music
-• ▢  
-- End Music
-• ‣‣ 
-- Skip Music
-
-**You can open this throug /menu also 📍**",
               reply_markup=menu_keyboard
          )
     else:
