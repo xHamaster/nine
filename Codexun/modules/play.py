@@ -426,7 +426,7 @@ async def cbhelp(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
-            [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 @Client.on_callback_query(filters.regex("cbguide"))
@@ -681,7 +681,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -722,7 +722,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -854,7 +854,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🤖", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
