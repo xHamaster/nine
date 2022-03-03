@@ -462,7 +462,7 @@ Listen, Source Code of this bot is not complete yet. We trying to add some more 
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbguide")]]
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
 
@@ -821,7 +821,7 @@ async def play(_, message: Message):
         await lel.edit("**Connected successfully !**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**Searching your song..**")
+        await lel.edit("**Downloding your song..**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
