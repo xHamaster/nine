@@ -352,7 +352,7 @@ async def cbcmnds(_, query: CallbackQuery):
 • /search (song name) 
 - For searching music
 
-• /song (song name)
+• /song or /resso 
 - For download music
 
 • /menu or /settings
@@ -411,9 +411,7 @@ You can also open this menu through /menu and /settings command.
 @Client.on_callback_query(filters.regex("cbhelp"))
 async def cbhelp(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**Need Help 💡**
-
-**[Resso Music Bot](https://t.me/RessoMusicBot)**
+        f"""**[Resso Music Bot](https://t.me/RessoMusicBot)**
 
 **• Bot Managed By** 
 **- @iSmartAnkit**
@@ -448,7 +446,9 @@ async def cbguide(_, query: CallbackQuery):
 
 • Now play your song and enjoy !""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Try Inline Search", switch_inline_query_current_chat="")],
+            [[
+              InlineKeyboardButton("Errors", callback_data="cberror")
+              InlineKeyboardButton("Inline Search", switch_inline_query_current_chat="")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -458,7 +458,20 @@ async def cbsource(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**About Source Code 💡**
 
-Listen, Source Code of this bot is not complete yet. We trying to add some more features, it will be soon public on @Codexun. You can join update channel for updates about source code.""",
+Listen, Source Code of this bot is not complete yet. We trying to add some more features, it will be soon public on @Codexun. You can join update channel for updates about to source code.""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+        ),
+    )
+
+@Client.on_callback_query(filters.regex("cberror"))
+async def cberror(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Mostly Faced Errors 💡**
+
+mostly, there wiil be the error about to music assistant. If you are facing any type of error in your group then that time make sure @RessoMusicAssistant is available in your group. If not then add it manually and before that make sure also it is not banned in ur chat./n/n**Assistant :- @RessoMusicAssistant**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
@@ -531,7 +544,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋\n Menu section of music player successfully opened for your chat {query.message.chat.title}, Use the buttons given below to manage.\n\n You can use `/menu` also 📍",
+              f"**Manage Music System 💡\nMenu section of music player successfully opened for your chat {query.message.chat.title}, Use the buttons given below to manage.\n\n You can use `/menu` cmnd also 📍",
 
               reply_markup=menu_keyboard
          )
@@ -660,7 +673,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support •", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -701,7 +714,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support •", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -833,7 +846,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support •", callback_data="cbsupport"),
+            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
