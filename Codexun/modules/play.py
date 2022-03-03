@@ -462,7 +462,7 @@ Listen, Source Code of this bot is not complete yet. We trying to add some more 
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbguide")]]
         ),
     )
 
@@ -471,10 +471,10 @@ async def cberror(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**Mostly Faced Errors 💡**
 
-mostly, there wiil be the error about to music assistant. If you are facing any type of error in your group then that time make sure @RessoMusicAssistant is available in your group. If not then add it manually and before that make sure also it is not banned in ur chat.\n\n**Assistant :- @RessoMusicAssistant**""",
+mostly, there wiil be the main error about to music assistant. If you are facing any type of error in your group then that time first make sure @RessoMusicAssistant is available in your group. If not then add it manually and before that make sure also it is not banned in ur chat.\n\n**Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
+            [InlineKeyboardButton("Contact Developers", callback_data="cbhelp")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
@@ -544,7 +544,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**Manage Music System 💡\n\nMenu section of music player successfully opened for your chat {query.message.chat.title}. Use the buttons given below to manage.\n\n You can use `/menu` also 📍",
+              f"**Manage Music System 💡**\n\nMenu section of music player successfully opened for your chat {query.message.chat.title}. You can use `/menu` command also.\n\n**Use Buttons Given Below** 📍",
 
               reply_markup=menu_keyboard
          )
@@ -672,8 +672,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ❏", callback_data="cbsupport"),
+            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -713,10 +713,10 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ❣", callback_data="cbsupport"),
+            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
-            InlineKeyboardButton("Close ❏", callback_data="cls"),
+            InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
     ]
@@ -845,8 +845,8 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ❏", callback_data="cbsupport"),
+            InlineKeyboardButton("⚙️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
