@@ -681,7 +681,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -722,7 +722,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -854,7 +854,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 💡", callback_data="cbsupport"),
+            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -929,7 +929,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**Connecting voice chat...**"
+                    f"**Downloading Music** {title[:50]}.....\n\n**FileSize:** {size}\n**Time Taken:** {taken} sec\n\n**Converting File****[__FFmpeg processing__]**"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
