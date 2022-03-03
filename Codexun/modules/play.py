@@ -502,12 +502,12 @@ Here is the official update channel of this bot. Kindly join it for regular upda
 
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
-    a = await app.get_chat_member(
-        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
-    )
-    if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer(
-            "Only admin with manage voice chat permission can do this.",
+    from_user = query.from_user
+    permissions = await member_permissions(query.message.chat.id, from_user.id)
+    permission = "can_restrict_members"
+    if permission not in permissions:
+        return await query.answer(
+            "You don't have enough permissions to perform this action.",
             show_alert=True,
         )
       await query.edit_message_text(
