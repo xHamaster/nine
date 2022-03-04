@@ -501,6 +501,20 @@ mostly, there wiil be the main error about to music assistant. If you are facing
         ),
     )
 
+
+@Client.on_callback_query(filters.regex("cbtuto"))
+async def cbtuto(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Make Your Own Bot 💡**
+
+Tutorial soon at: @Codexun\n\n The Tutorial video about to making your own bot like this will soon available at @Codexun. Also source code and all information about making bot published soon. Stay connected with us at @Codexun for upcoming updates related to making your own bot.\n\n**Thanks !**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Contact Developers", callback_data="cbhelp")],
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
+        ),
+    )
+
 @Client.on_callback_query(filters.regex("cbhome"))
 async def cbhome(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -514,6 +528,9 @@ Use the given buttons for more 📍""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
+                    InlineKeyboardButton(
+                        "Make Your own Bot", callback_data="cbtuto")
+                ],[
                     InlineKeyboardButton(
                         "Commands", callback_data="cbcmnds"),
                     InlineKeyboardButton(
