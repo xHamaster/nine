@@ -24,9 +24,6 @@ Use the given buttons for more 📍""",
             [
                 [
                     InlineKeyboardButton(
-                        "Make Your Own Bot", callback_data="cbtuto")
-                ],[
-                    InlineKeyboardButton(
                         "Commands", callback_data="cbcmnds"),
                     InlineKeyboardButton(
                         "About", callback_data="cbabout")
