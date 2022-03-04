@@ -709,8 +709,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ], [
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support ☃️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -757,8 +757,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Update ☃️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -896,8 +896,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
+            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Update ☃️", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
