@@ -426,7 +426,7 @@ async def cbhelp(_, query: CallbackQuery):
 **Note : Contact developers only that time if you have really need a help or facing any type of issues. Don't try to waste our and your time by asking useless queries !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
+            [InlineKeyboardButton("Update Channel", url=f"https://t.me/Codexun")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -483,7 +483,7 @@ async def cbsource(_, query: CallbackQuery):
 Listen, Source Code of this bot is not complete yet. We trying to add some more features, it will be soon public on @Codexun. You can join update channel for updates about to source code.""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Update Channel", url=f"https://t.me/RessoSupportBot")],
+            [InlineKeyboardButton("Update Channel", url=f"https://t.me/codexun")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
         ),
     )
@@ -709,8 +709,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ], [
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
+            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -757,8 +757,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
+            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -896,8 +896,8 @@ async def play(_, message: Message):
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 🎚️", callback_data="cbsupport"),
+            InlineKeyboardButton("≡ Menu", callback_data="cbmenu"),
+            InlineKeyboardButton("Support ⑆", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -985,7 +985,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
@@ -1010,7 +1010,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/CreatorPavanChat)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
