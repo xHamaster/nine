@@ -470,7 +470,7 @@ async def cbguide(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [[
               InlineKeyboardButton("Errors", callback_data="cberror"),
-              InlineKeyboardButton("Inline", switch_inline_query_current_chat="")],
+              InlineKeyboardButton("Make Your", callback_data="cbtuto")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -528,9 +528,6 @@ Use the given buttons for more 📍""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "Make Your Own Bot", callback_data="cbtuto")
-                ],[
                     InlineKeyboardButton(
                         "Commands", callback_data="cbcmnds"),
                     InlineKeyboardButton(
