@@ -507,7 +507,7 @@ async def cbtuto(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""**Make Your Own Bot Like this💡**
 
-**Tutorial soon at: @Codexun**\n\nThe Tutorial video about to making your own bot like this will be soon available at @Codexun. Also source code and all information about making bot published soon. Stay connected with us at @Codexun for upcoming updates related to making your own bot like this.\n\n**Thanks !**""",
+**Tutorial soon at : @Codexun**\n\nThe Tutorial video about to making your own bot like this will be soon available at @Codexun. Also source code and all information about making bot published soon.\nStay connected with us at @Codexun for upcoming updates related to making your own bot like this.\n\n**Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
             [InlineKeyboardButton("Contact Developers", callback_data="cbhelp")],
