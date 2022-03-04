@@ -710,7 +710,7 @@ async def play(_, message: Message):
             
         ], [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Support ☃️", callback_data="cbsupport"),
+            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -758,7 +758,7 @@ async def play(_, message: Message):
             
         ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Update ☃️", callback_data="cbsupport"),
+            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -897,7 +897,7 @@ async def play(_, message: Message):
             
         ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Update ☃️", callback_data="cbsupport"),
+            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
