@@ -32,8 +32,10 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     CallbackQuery,
 )
-from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant, ChatWriteForbidden
+from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant, 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+
 
 from Codexun.tgcalls import calls, queues
 from Codexun.tgcalls.calls import client as ASS_ACC
