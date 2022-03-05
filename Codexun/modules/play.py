@@ -211,6 +211,7 @@ menu_keyboard = InlineKeyboardMarkup(
 
 @Client.on_message(~filters.edited & filters.incoming & filters.private, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
+    MUST_JOIN = Codexun
     if not MUST_JOIN:  # Not compulsory
         return
     try:
