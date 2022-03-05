@@ -724,7 +724,7 @@ async def play(_, message: Message):
             
         ], [
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
+            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -772,7 +772,7 @@ async def play(_, message: Message):
             
         ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
+            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -911,7 +911,7 @@ async def play(_, message: Message):
             
         ],[
             InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Help 👨🏻‍💻", callback_data="cbsupport"),
+            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
