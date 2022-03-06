@@ -201,11 +201,10 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Volume", callback_data=f"vlm"),
-             InlineKeyboardButton(text="Search", switch_inline_query_current_chat=""),
+            InlineKeyboardButton(text="🔉 Sound", callback_data=f"vlm"),
+             InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
-            InlineKeyboardButton(text="Support", callback_data=f"cbsupport"),
-             InlineKeyboardButton(text="Close", callback_data=f"cls"),
+             InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
     ]
 )
@@ -594,7 +593,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n🔗 Grp ID : {query.message.chat.id}\n\nManage Your Groups Music System By Pressing Buttons Given Below 💡",
+              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n📖 Grp ID : {query.message.chat.id}\n\n**Manage Your Groups Music System By Pressing Buttons Given Below 💡**",
 
               reply_markup=menu_keyboard
          )
