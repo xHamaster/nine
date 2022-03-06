@@ -594,7 +594,7 @@ async def cbmenu(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n🔗 chat_id\n\nManage Your Music System By Pressing Buttons Given Below 💡",
+              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n🔗 Grp ID : {query.message.chat.id}\n\nManage Your Groups Music System By Pressing Buttons Given Below 💡",
 
               reply_markup=menu_keyboard
          )
