@@ -177,17 +177,16 @@ def others_markup(videoid, user_id):
     return buttons
 
 
-play_keyboard = InlineKeyboardMarkup(
+audio_keyboard = InlineKeyboardMarkup(
     [
         [
             
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
+            InlineKeyboardButton("🎚️ Volume", callback_data="skipvc"),
+            InlineKeyboardButton("Quality 💻", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Fuck", callback_data=f"cls"),
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+            InlineKeyboardButton(text="Close 🗑️", callback_data=f"cls"),
         ],
     ]
 )
@@ -201,7 +200,7 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="🔉 Sound", callback_data=f"vlm"),
+            InlineKeyboardButton(text="🔊 Sound", callback_data=f"cbaudio"),
              InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
@@ -600,6 +599,23 @@ async def cbmenu(_, query: CallbackQuery):
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
 
+
+@Client.on_callback_query(filters.regex("cbaudio"))
+async def cbaudio(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if is_music_playing(chat_id):
+          await query.edit_message_text(
+              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n📖 Grp ID : {query.message.chat.id}\n\n**Manage Your Groups Music System By Pressing Buttons Given Below 💡**",
+
+              reply_markup=audio_keyboard
+         )
+    else:
+        await query.answer("nothing is currently streaming", show_alert=True)
 
 
 # play
