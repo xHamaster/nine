@@ -203,6 +203,9 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton(text="🔊 Sound", callback_data=f"cbaudio"),
              InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
+            InlineKeyboardButton(text="CleanDB", callback_data=f"cleandb"),
+             InlineKeyboardButton(text="Language", callback_data=f"cbsupport"),
+        ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
     ]
@@ -617,7 +620,30 @@ async def cbaudio(_, query: CallbackQuery):
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
 
-
+@Client.on_callback_query(filters.regex("cleandb"))
+async def cleandb(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    
+        user_id = CallbackQuery.from_user.id
+        user_name = CallbackQuery.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+    try:
+        clear(chat_id)
+    except QueueEmpty:
+        pass
+    await remove_active_chat(chat_id)
+    try:
+        await calls.pytgcalls.leave_group_call(chat_id)
+    except:
+        pass
+    await query.edit_message_text(
+        f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
+    )
 # play
 @Client.on_message(
     command(["play", f"play@{BOT_USERNAME}"])
