@@ -181,8 +181,8 @@ audio_keyboard = InlineKeyboardMarkup(
     [
         [
             
-            InlineKeyboardButton("Manage Volume", callback_data="skipvc"),]
-         [   InlineKeyboardButton("Sound Quality", callback_data="stopvc"),]
+            InlineKeyboardButton("Manage Volume", callback_data="skipvc"),],
+         [   InlineKeyboardButton("Sound Quality", callback_data="stopvc"),
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
