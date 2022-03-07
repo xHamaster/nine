@@ -181,12 +181,11 @@ audio_keyboard = InlineKeyboardMarkup(
     [
         [
             
-            InlineKeyboardButton("🎚️ Volume", callback_data="skipvc"),
-            InlineKeyboardButton("Quality 🖥️", callback_data="stopvc"),
+            InlineKeyboardButton("Manage Volume", callback_data="skipvc"),]
+         [   InlineKeyboardButton("Sound Quality", callback_data="stopvc"),]
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
-            InlineKeyboardButton(text="Close 🗑️", callback_data=f"cls"),
         ],
     ]
 )
@@ -212,8 +211,8 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Sound", callback_data=f"cbaudio"),
-             InlineKeyboardButton(text="Support", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="Sound 🔊", callback_data=f"cbaudio"),
+             InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
              InlineKeyboardButton(text="Language", callback_data=f"vlm"),
@@ -373,7 +372,11 @@ async def cleandb(_, CallbackQuery):
         user_name = CallbackQuery.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
         await CallbackQuery.edit_message_text(
-        f"✅ __Erased queues successfully__\n│\n╰ Database cleaned by {rpk}"
+        f"✅ __Erased queues successfully__\n│\n╰ Database cleaned by {rpk}",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Close 🗑️", callback_data="cls")]])
+        
     )
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
@@ -432,6 +435,36 @@ This bot helps you to play music, to search music from youtube and to download m
         ),
     )
 
+@Client.on_callback_query(filters.regex("grpabout"))
+async def grpabout(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Make Your Own 💡**
+
+Here is the about section for contact bot owner and for making your own bot like this !
+
+**Team @Codexun**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Owned Admin 👨🏻‍💻", user_id=2090451552)],
+            [InlineKeyboardButton("Make Your Own 🤖", callback_data="cbmakeur")],
+            [InlineKeyboardButton("🗑️ Close Menu", callback_data="cls")]]
+        ),
+    )
+@Client.on_callback_query(filters.regex("cbmakeur"))
+async def cbmakeur(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**About Section 💡**
+
+About to making your own bot like this, Tutorial Soon available at @Codexun and source code of bot also.
+
+**@TeamCodexun**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            
+            [InlineKeyboardButton("⬅️ Back", callback_data="cbmenu")]]
+        ),
+    )
+
 @Client.on_callback_query(filters.regex("cbstgs"))
 async def cbstgs(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -465,15 +498,16 @@ async def cbhelp(_, query: CallbackQuery):
 **- @iSmartAnkit**
 **- @PavanMagar**
 **- @Noob_Aayu**
-**- @QnNikku**
 
 **• Powered by**
 **- @Codexun**
+**- @TeamCodexun**
 
 **Note : Contact developers only that time if you have really need a help or facing any type of issues. Don't try to waste our and your time by asking useless queries !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Update Channel", url=f"https://t.me/Codexun")],
+            [InlineKeyboardButton("Support", url=f"https://t.me/teamCodexun"),
+             InlineKeyboardButton("Updates", url=f"https://t.me/Codexun")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -580,20 +614,6 @@ async def volume(_, query: CallbackQuery):
         )
     
 
-
-@Client.on_callback_query(filters.regex("cbsupport"))
-async def cbsupport(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
-Here is the official update channel of this bot. Kindly join it for regular updates from us..!**""",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support", url=f"https://t.me/TeamCodexun"),
-              InlineKeyboardButton("Updates", url=f"https://t.me/Codexun")],
-              [InlineKeyboardButton("Owned Admin 👨🏻‍💻", user_id=2090451552)],
-              [InlineKeyboardButton("⬅️ Back", callback_data="cbmenu")]]
-        ),
-    )
-
 @Client.on_callback_query(filters.regex("cbmenu"))
 async def cbmenu(_, query: CallbackQuery):
     if query.message.sender_chat:
@@ -622,7 +642,7 @@ async def cbaudio(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n📖 Grp ID : {query.message.chat.id}\n\n**Manage Your Groups Music System By Pressing Buttons Given Below 💡**",
+              f"**Manage Audio 🔊**\n\nChoose Your Below Option For Manage Audio Setting in {query.message.chat.id}.",
 
               reply_markup=audio_keyboard
          )
@@ -764,16 +784,9 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
     [
         
-      [
-            
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ], [
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
+       [
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -813,15 +826,8 @@ async def play(_, message: Message):
     [
         
        [
-            
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ],[
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -952,15 +958,8 @@ async def play(_, message: Message):
     [
         
        [
-            
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ],[
-            InlineKeyboardButton("🖱️ Menu", callback_data="cbmenu"),
-            InlineKeyboardButton("Join 👨🏻‍💻", url=f"https://t.me/Codexun"),
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
