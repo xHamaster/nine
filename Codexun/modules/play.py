@@ -175,61 +175,63 @@ def others_markup(videoid, user_id):
         
     ]
     return buttons
-def audio_quality_markup(
-    _,
-    low: Union[bool, str] = None,
-    medium: Union[bool, str] = None,
-    high: Union[bool, str] = None,
-):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text=_["Low Quality"].format("✅")
-                if low == True
-                else _["Low Quality"].format(""),
-                callback_data="LQA",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["Medium Quality"].format("✅")
-                if medium == True
-                else _["Medium Quality"].format(""),
-                callback_data="MQA",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["High Quality"].format("✅")
-                if high == True
-                else _["High Quality"].format(""),
-                callback_data="HQA",
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["⬅️ Back"],
-                callback_data="cbmenu",
-            ),
-            InlineKeyboardButton(
-                text=_["Close 🗑️"], callback_data="cls"
-            ),
-        ],
-    ]
-    return buttons
 
 audio_keyboard = InlineKeyboardMarkup(
     [
         [
             
             InlineKeyboardButton("Manage Volume", callback_data="skipvc"),],
-         [   InlineKeyboardButton("Sound Quality", callback_data="stopvc"),
+         [   InlineKeyboardButton("Sound Quality", callback_data="high"),
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
         ],
     ]
 )
+
+highquality_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("Low Quality", callback_data="low"),],
+         [   InlineKeyboardButton("Medium Quality", callback_data="medium"),
+            
+        ],[   InlineKeyboardButton("High Quality ✅", callback_data="high"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+lowquality_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("Low Quality ✅", callback_data="low"),],
+         [   InlineKeyboardButton("Medium Quality", callback_data="medium"),
+            
+        ],[   InlineKeyboardButton("High Quality", callback_data="high"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+mediumquality_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("Low Quality", callback_data="low"),],
+         [   InlineKeyboardButton("Medium Quality ✅", callback_data="medium"),
+            
+        ],[   InlineKeyboardButton("High Quality", callback_data="high"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+
 dbclean_keyboard = InlineKeyboardMarkup(
     [
         [
@@ -263,15 +265,6 @@ menu_keyboard = InlineKeyboardMarkup(
     ]
 )
 
-
-@Client.on_callback_query(filters.regex("audio"))
-async def audio(_, aud):
-    if aud == "High":
-        buttons = audio_quality_markup(_, high=True)
-    elif aud == "Medium":
-        buttons = audio_quality_markup(_, medium=True)
-    elif aud == "Low":
-        buttons = audio_quality_markup(_, low=True)
 
 
 
@@ -692,12 +685,65 @@ async def cbaudio(_, query: CallbackQuery):
     chat_id = query.message.chat.id
     if is_music_playing(chat_id):
           await query.edit_message_text(
-              f"**Manage Audio 🔊**\n\nChoose Your Below Option For Manage Audio Setting in {query.message.chat.id}.",
+              f"**Manage Audio 🔊**\n\nChoose your option from given below to manage audio at {query.message.chat.title}.",
 
               reply_markup=audio_keyboard
          )
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
+
+@Client.on_callback_query(filters.regex("high"))
+async def highaudio(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if is_music_playing(chat_id):
+          await query.edit_message_text(
+              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
+
+              reply_markup=highquality_keyboard
+         )
+    else:
+        await query.answer("nothing is currently streaming", show_alert=True)
+
+@Client.on_callback_query(filters.regex("low"))
+async def lowaudio(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if is_music_playing(chat_id):
+          await query.edit_message_text(
+              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
+
+              reply_markup=lowquality_keyboard
+         )
+    else:
+        await query.answer("nothing is currently streaming", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("medium"))
+async def mediumaudio(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if is_music_playing(chat_id):
+          await query.edit_message_text(
+              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
+
+              reply_markup=mediumquality_keyboard
+         )
+    else:
+        await query.answer("nothing is currently streaming", show_alert=True)
+
 
 @Client.on_callback_query(filters.regex("dbconfirm"))
 async def dbconfirm(_, query: CallbackQuery):
