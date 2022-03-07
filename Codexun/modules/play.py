@@ -272,7 +272,6 @@ async def audio(_, aud):
         buttons = audio_quality_markup(_, medium=True)
     elif aud == "Low":
         buttons = audio_quality_markup(_, low=True)
-    return buttons
 
 
 
