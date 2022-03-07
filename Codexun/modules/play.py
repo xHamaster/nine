@@ -1395,10 +1395,6 @@ async def play(_, message: Message):
                 ),
                 stream_type=StreamType().local_stream,
             )
-        except Exception:
-            return await lel.edit(
-                "**Error ! Make sure Voice Chat is Enabled.**\n\nIf Voice chat is enabled :- then report this error at **@TeamCodexun** with our admins."
-            )
 
         await music_on(message.chat.id)
         await add_active_chat(message.chat.id)
