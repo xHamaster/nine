@@ -708,9 +708,7 @@ async def high(_, CallbackQuery):
         )
     CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
-    if await is_active_chat(chat_id):
-        
-        try:
+    if await is_active_chat(chat_id)::
             
         await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
         await CallbackQuery.edit_message_text(
@@ -734,8 +732,6 @@ async def low(_, CallbackQuery):
     CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
-        
-        try:
             
         await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
         await CallbackQuery.edit_message_text(
@@ -758,8 +754,6 @@ async def medium(_, CallbackQuery):
     CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
-        
-        try:
             
         await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
         await CallbackQuery.edit_message_text(
