@@ -337,6 +337,35 @@ async def stopvc(_, CallbackQuery):
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
+@Client.on_callback_query(filters.regex("cleandb"))
+async def cleandb(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
+        try:
+            await calls.pytgcalls.leave_group_call(chat_id)
+        except Exception:
+            pass
+        await remove_active_chat(chat_id)
+        await CallbackQuery.answer("Music stream ended.", show_alert=True)
+        user_id = CallbackQuery.from_user.id
+        user_name = CallbackQuery.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        await query.edit_message_text(
+        f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 
 @Client.on_callback_query(filters.regex("cbcmnds"))
 async def cbcmnds(_, query: CallbackQuery):
@@ -619,36 +648,6 @@ async def cbaudio(_, query: CallbackQuery):
          )
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
-
-@Client.on_callback_query(filters.regex("cleandb"))
-async def cleandb(_, query: CallbackQuery):
-    a = await app.get_chat_member(
-        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
-    )
-    if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer(
-            "Only admin with manage voice chat permission can do this.",
-            show_alert=True,
-        )
-    CallbackQuery.from_user.first_name
-    chat_id = CallbackQuery.message.chat.id
-    if await is_active_chat(chat_id):
-        
-    try:
-            await calls.pytgcalls.leave_group_call(chat_id)
-        except Exception:
-            pass
-        await remove_active_chat(chat_id)
-        await CallbackQuery.answer("Music stream ended.", show_alert=True)
-        user_id = CallbackQuery.from_user.id
-        user_name = CallbackQuery.from_user.first_name
-        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-        await query.edit_message_text(
-        f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
-    )
-    else:
-        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
-
 
 # play
 @Client.on_message(
