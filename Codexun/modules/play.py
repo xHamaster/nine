@@ -180,8 +180,8 @@ audio_keyboard = InlineKeyboardMarkup(
     [
         [
             
-            InlineKeyboardButton("Manage Volume", callback_data="skipvc"),],
-         [   InlineKeyboardButton("Sound Quality", callback_data="high"),
+            InlineKeyboardButton("Manage Volume", callback_data="fifth"),],
+         [   InlineKeyboardButton("Audio Quality", callback_data="high"),
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
@@ -189,6 +189,115 @@ audio_keyboard = InlineKeyboardMarkup(
     ]
 )
 
+fifth_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("20%", callback_data="first"),
+            InlineKeyboardButton("50%", callback_data="second"),
+            
+        ],[
+            
+            InlineKeyboardButton("100%", callback_data="third"),
+            InlineKeyboardButton("150%", callback_data="fourth"),
+            
+        ],[
+            
+            InlineKeyboardButton("200% 🔊", callback_data="fifth"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+
+fourth_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("20%", callback_data="first"),
+            InlineKeyboardButton("50%", callback_data="second"),
+            
+        ],[
+            
+            InlineKeyboardButton("100%", callback_data="third"),
+            InlineKeyboardButton("150% 🔊", callback_data="fourth"),
+            
+        ],[
+            
+            InlineKeyboardButton("200%", callback_data="fifth"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+
+third_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("20%", callback_data="first"),
+            InlineKeyboardButton("50%", callback_data="second"),
+            
+        ],[
+            
+            InlineKeyboardButton("100% 🔊", callback_data="third"),
+            InlineKeyboardButton("150%", callback_data="fourth"),
+            
+        ],[
+            
+            InlineKeyboardButton("200%", callback_data="fifth"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+
+second_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("20%", callback_data="first"),
+            InlineKeyboardButton("50% 🔊", callback_data="second"),
+            
+        ],[
+            
+            InlineKeyboardButton("100%", callback_data="third"),
+            InlineKeyboardButton("150%", callback_data="fourth"),
+            
+        ],[
+            
+            InlineKeyboardButton("200%", callback_data="fifth"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
+
+first_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("20% 🔊", callback_data="first"),
+            InlineKeyboardButton("50%", callback_data="second"),
+            
+        ],[
+            
+            InlineKeyboardButton("100%", callback_data="third"),
+            InlineKeyboardButton("150%", callback_data="fourth"),
+            
+        ],[
+            
+            InlineKeyboardButton("200%", callback_data="fifth"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
 highquality_keyboard = InlineKeyboardMarkup(
     [
         [
@@ -710,7 +819,7 @@ async def high(_, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
             
-        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.answer("Now streaming in high quality!", show_alert=True)
         await CallbackQuery.edit_message_text(
         f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
         reply_markup=highquality_keyboard
@@ -733,7 +842,7 @@ async def low(_, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
             
-        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.answer("Now streaming in low quality!", show_alert=True)
         await CallbackQuery.edit_message_text(
         f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
         reply_markup=lowquality_keyboard
@@ -755,13 +864,126 @@ async def medium(_, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
             
-        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.answer("Now streaming in medium quality!", show_alert=True)
         await CallbackQuery.edit_message_text(
         f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
         reply_markup=mediumquality_keyboard
     )
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
+@Client.on_callback_query(filters.regex("fifth"))
+async def fifth(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+            
+        await CallbackQuery.answer("Now streaming in 200% volume!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Volume 🔊**\n\nIf you want to manage volume through buttons then make a assistant Admin first.",
+        reply_markup=fifth_keyboard
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
+@Client.on_callback_query(filters.regex("fourth"))
+async def fourth(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+            
+        await CallbackQuery.answer("Now streaming 150 volume!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Volume 🔊**\n\nIf you want to manage volume through buttons then make a assistant Admin first.",
+        reply_markup=fourth_keyboard
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
+@Client.on_callback_query(filters.regex("third"))
+async def third(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+            
+        await CallbackQuery.answer("Now streaming in 100% volume!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Volume 🔊**\n\nIf you want to manage volume through buttons then make a assistant Admin first.",
+        reply_markup=third_keyboard
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("second"))
+async def second(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+            
+        await CallbackQuery.answer("Now streaming in 50% volume!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Volume 🔊**\n\nIf you want to manage volume through buttons then make a assistant Admin first.",
+        reply_markup=second_keyboard
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
+
+@Client.on_callback_query(filters.regex("first"))
+async def first(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+            
+        await CallbackQuery.answer("Now streaming in 20% volume!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Volume 🔊**\n\nIf you want to manage volume through buttons then make a assistant Admin first.",
+        reply_markup=first_keyboard
+    )
+    else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 
 @Client.on_callback_query(filters.regex("dbconfirm"))
 async def dbconfirm(_, query: CallbackQuery):
