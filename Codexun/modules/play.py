@@ -1385,7 +1385,6 @@ async def play(_, message: Message):
             ),
         )
     else:
-        try:
             await calls.pytgcalls.join_group_call(
                 message.chat.id,
                 InputStream(
