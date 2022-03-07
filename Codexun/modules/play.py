@@ -635,19 +635,20 @@ async def cleandb(_, query: CallbackQuery):
     if await is_active_chat(chat_id):
         
     try:
-        clear(chat_id)
-    except QueueEmpty:
-        pass
-    await remove_active_chat(chat_id)
-    try:
-        await calls.pytgcalls.leave_group_call(chat_id)
-    except:
-        pass
-    await query.edit_message_text(
+            await calls.pytgcalls.leave_group_call(chat_id)
+        except Exception:
+            pass
+        await remove_active_chat(chat_id)
+        await CallbackQuery.answer("Music stream ended.", show_alert=True)
+        user_id = CallbackQuery.from_user.id
+        user_name = CallbackQuery.from_user.first_name
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        await query.edit_message_text(
         f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
     )
- else:
+    else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 
 # play
 @Client.on_message(
