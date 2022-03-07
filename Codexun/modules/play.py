@@ -200,6 +200,7 @@ highquality_keyboard = InlineKeyboardMarkup(
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+            InlineKeyboardButton(text="Close 🗑️", callback_data=f"cls"),
         ],
     ]
 )
@@ -214,6 +215,7 @@ lowquality_keyboard = InlineKeyboardMarkup(
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+            InlineKeyboardButton(text="Close 🗑️", callback_data=f"cls"),
         ],
     ]
 )
@@ -228,6 +230,7 @@ mediumquality_keyboard = InlineKeyboardMarkup(
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
+            InlineKeyboardButton(text="Close 🗑️", callback_data=f"cls"),
         ],
     ]
 )
@@ -254,8 +257,8 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Sound 🔊", callback_data=f"audio"),
-             InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="Audio", callback_data=f"cbaudio"),
+             InlineKeyboardButton(text="About", callback_data=f"cbsupport"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
              InlineKeyboardButton(text="Language", callback_data=f"vlm"),
