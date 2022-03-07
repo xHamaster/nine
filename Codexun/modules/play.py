@@ -622,16 +622,18 @@ async def cbaudio(_, query: CallbackQuery):
 
 @Client.on_callback_query(filters.regex("cleandb"))
 async def cleandb(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
-    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
     if not a.can_manage_voice_chats:
-        return await query.answer("Only admins cam use this..!", show_alert=True)
-    chat_id = query.message.chat.id
-    
-        user_id = CallbackQuery.from_user.id
-        user_name = CallbackQuery.from_user.first_name
-        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
     try:
         clear(chat_id)
     except QueueEmpty:
@@ -644,6 +646,9 @@ async def cleandb(_, query: CallbackQuery):
     await query.edit_message_text(
         f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
     )
+ else:
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 # play
 @Client.on_message(
     command(["play", f"play@{BOT_USERNAME}"])
