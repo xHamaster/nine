@@ -190,6 +190,18 @@ audio_keyboard = InlineKeyboardMarkup(
         ],
     ]
 )
+dbclean_keyboard = InlineKeyboardMarkup(
+    [
+        [
+            
+            InlineKeyboardButton("Yes, Proceed it!", callback_data="cleandb"),
+            InlineKeyboardButton("Nope, Cancel it!", callback_data="cbmenu"),
+            
+        ],[
+            InlineKeyboardButton(text="⬅️ Menu Back", callback_data=f"cbmenu"),
+        ],
+    ]
+)
 menu_keyboard = InlineKeyboardMarkup(
     [
         [
@@ -203,8 +215,8 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton(text="🔊 Sound", callback_data=f"cbaudio"),
              InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
-            InlineKeyboardButton(text="CleanDB", callback_data=f"cleandb"),
-             InlineKeyboardButton(text="Language", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="♻️ CleanDB", callback_data=f"dbconfirm"),
+             InlineKeyboardButton(text="Language 🏳️‍🌈", callback_data=f"cbsupport"),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
@@ -356,11 +368,11 @@ async def cleandb(_, CallbackQuery):
         except Exception:
             pass
         await remove_active_chat(chat_id)
-        await CallbackQuery.answer("Music stream ended.", show_alert=True)
+        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
         user_id = CallbackQuery.from_user.id
         user_name = CallbackQuery.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-        await query.edit_message_text(
+        await CallbackQuery.edit_message_text(
         f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
     )
     else:
@@ -645,6 +657,23 @@ async def cbaudio(_, query: CallbackQuery):
               f"**⚙️ Music Bot Settings**\n\n📮 Group : {query.message.chat.title}.\n📖 Grp ID : {query.message.chat.id}\n\n**Manage Your Groups Music System By Pressing Buttons Given Below 💡**",
 
               reply_markup=audio_keyboard
+         )
+    else:
+        await query.answer("nothing is currently streaming", show_alert=True)
+
+@Client.on_callback_query(filters.regex("dbconfirm"))
+async def dbconfirm(_, query: CallbackQuery):
+    if query.message.sender_chat:
+        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
+    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+    if not a.can_manage_voice_chats:
+        return await query.answer("Only admins cam use this..!", show_alert=True)
+    chat_id = query.message.chat.id
+    if is_music_playing(chat_id):
+          await query.edit_message_text(
+              f"**Confirmation ⚠️**\n\nAre you sure want to end stream in {query.message.chat.title} and clean all Queued songs in db ?**",
+
+              reply_markup=dbclean_keyboard
          )
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
