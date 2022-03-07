@@ -265,7 +265,7 @@ menu_keyboard = InlineKeyboardMarkup(
 
 
 @Client.on_callback_query(filters.regex("audio"))
-async def gen_buttons_aud(_, aud):
+async def audio(_, aud):
     if aud == "High":
         buttons = audio_quality_markup(_, high=True)
     elif aud == "Medium":
