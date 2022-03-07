@@ -1385,8 +1385,8 @@ async def play(_, message: Message):
             ),
         )
     else:
-           try:
-                await calls.pytgcalls.join_group_call(
+        try:
+            await calls.pytgcalls.join_group_call(
                 message.chat.id,
                 InputStream(
                     InputAudioStream(
@@ -1395,9 +1395,9 @@ async def play(_, message: Message):
                 ),
                 stream_type=StreamType().local_stream,
             )
-     except Exception:
+        except Exception:
             return await lel.edit(
-                "**Error Joining Voice Chat. Make sure Voice Chat is Enabled.**\n\n If voice chat is enabled then report this error at **@TeamCodexun** with our admins."
+                "**Error ! Make sure Voice Chat is Enabled.**"
             )
 
         await music_on(message.chat.id)
