@@ -182,7 +182,7 @@ audio_keyboard = InlineKeyboardMarkup(
         [
             
             InlineKeyboardButton("🎚️ Volume", callback_data="skipvc"),
-            InlineKeyboardButton("Quality 💻", callback_data="stopvc"),
+            InlineKeyboardButton("Quality 🖥️", callback_data="stopvc"),
             
         ],[
             InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
@@ -194,11 +194,11 @@ dbclean_keyboard = InlineKeyboardMarkup(
     [
         [
             
-            InlineKeyboardButton("Yes, Proceed it!", callback_data="cleandb"),
-            InlineKeyboardButton("Nope, Cancel it!", callback_data="cbmenu"),
+            InlineKeyboardButton("Yes, Proceed !", callback_data="cleandb"),],
+        [    InlineKeyboardButton("Nope, Cancel !", callback_data="cbmenu"),
             
         ],[
-            InlineKeyboardButton(text="⬅️ Menu Back", callback_data=f"cbmenu"),
+            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
         ],
     ]
 )
@@ -212,11 +212,11 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="🔊 Sound", callback_data=f"cbaudio"),
-             InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="Sound 🔊", callback_data=f"cbaudio"),
+             InlineKeyboardButton(text="Support 💁🏻", callback_data=f"cbsupport"),
         ],[
-            InlineKeyboardButton(text="♻️ CleanDB", callback_data=f"dbconfirm"),
-             InlineKeyboardButton(text="Language 🏳️‍🌈", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="CleanDb ♻️", callback_data=f"dbconfirm"),
+             InlineKeyboardButton(text="Language 💬", callback_data=f"vlm"),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
@@ -373,7 +373,7 @@ async def cleandb(_, CallbackQuery):
         user_name = CallbackQuery.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
         await CallbackQuery.edit_message_text(
-        f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
+        f"✅ __Erased queues in **{query.message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
     )
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
