@@ -1397,8 +1397,9 @@ async def play(_, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "**Error ! Make sure Voice Chat is Enabled.**"
+                "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
             )
+
 
         await music_on(message.chat.id)
         await add_active_chat(message.chat.id)
