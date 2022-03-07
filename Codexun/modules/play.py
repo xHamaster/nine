@@ -212,11 +212,11 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Sound 🔊", callback_data=f"cbaudio"),
-             InlineKeyboardButton(text="Support 💁🏻", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="Sound", callback_data=f"cbaudio"),
+             InlineKeyboardButton(text="Support", callback_data=f"cbsupport"),
         ],[
-            InlineKeyboardButton(text="CleanDb ♻️", callback_data=f"dbconfirm"),
-             InlineKeyboardButton(text="Language 💬", callback_data=f"vlm"),
+            InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
+             InlineKeyboardButton(text="Language", callback_data=f"vlm"),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
@@ -373,7 +373,7 @@ async def cleandb(_, CallbackQuery):
         user_name = CallbackQuery.from_user.first_name
         rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
         await CallbackQuery.edit_message_text(
-        f"✅ __Erased queues in **{query.message.chat.title}**__\n│\n╰ Database cleaned by {rpk}"
+        f"✅ __Erased queues successfully__\n│\n╰ Database cleaned by {rpk}"
     )
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
@@ -409,7 +409,7 @@ async def cbcmnds(_, query: CallbackQuery):
 Powered by **Resso Music** !""",
         reply_markup=InlineKeyboardMarkup(
             [
-              [InlineKeyboardButton("Tools", callback_data="cbtools"),
+              [
                InlineKeyboardButton("Menu", callback_data="cbstgs")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
@@ -427,8 +427,7 @@ This bot helps you to play music, to search music from youtube and to download m
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
             [
-            [InlineKeyboardButton("Source Code", callback_data="cbsource"),
-             InlineKeyboardButton("Need Help", callback_data="cbhelp")],
+            [InlineKeyboardButton("Make Your Own Bot", callback_data="cbtuto")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -478,27 +477,7 @@ async def cbhelp(_, query: CallbackQuery):
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
-@Client.on_callback_query(filters.regex("cbtools"))
-async def cbtools(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**Some Basic Useful Tools 💡**
 
-• /info or /whois
-- Get user information
-
-• /id
-- Get replied user id
-
-• /telegraph or /tgm
-- Get telegraph link of photo
-
-
-**More tools coming soon..**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbcmnds")]]
-        ),
-    )
 @Client.on_callback_query(filters.regex("cbguide"))
 async def cbguide(_, query: CallbackQuery):
     await query.edit_message_text(
@@ -517,24 +496,11 @@ async def cbguide(_, query: CallbackQuery):
 • Now play your song and enjoy !""",
         reply_markup=InlineKeyboardMarkup(
             [[
-              InlineKeyboardButton("Errors", callback_data="cberror"),
-              InlineKeyboardButton("Make Your", callback_data="cbtuto")],
+              InlineKeyboardButton("Common Error", callback_data="cberror")],
               [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
-@Client.on_callback_query(filters.regex("cbsource"))
-async def cbsource(_, query: CallbackQuery):
-    await query.edit_message_text(
-        f"""**About Source Code 💡**
-
-Listen, Source Code of this bot is not complete yet. We trying to add some more features, it will be soon public on @Codexun. You can join update channel for updates about to source code.""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-            [InlineKeyboardButton("Update Channel", url=f"https://t.me/codexun")],
-              [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
-        ),
-    )
 
 @Client.on_callback_query(filters.regex("cberror"))
 async def cberror(_, query: CallbackQuery):
@@ -621,8 +587,10 @@ async def cbsupport(_, query: CallbackQuery):
         f"""**Hey [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})** 👋
 Here is the official update channel of this bot. Kindly join it for regular updates from us..!**""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Join Here", url=f"https://t.me/Codexun")],
-              [InlineKeyboardButton("⌧", callback_data="cls")]]
+            [[InlineKeyboardButton("Support", url=f"https://t.me/TeamCodexun"),
+              InlineKeyboardButton("Updates", url=f"https://t.me/Codexun")],
+              [InlineKeyboardButton("Owned Admin 👨🏻‍💻", user_id=2090451552)],
+              [InlineKeyboardButton("⬅️ Back", callback_data="cbmenu")]]
         ),
     )
 
