@@ -175,7 +175,48 @@ def others_markup(videoid, user_id):
         
     ]
     return buttons
-
+def audio_quality_markup(
+    _,
+    low: Union[bool, str] = None,
+    medium: Union[bool, str] = None,
+    high: Union[bool, str] = None,
+):
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text=_["Low Quality"].format("✅")
+                if low == True
+                else _["Low Quality"].format(""),
+                callback_data="LQA",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["Medium Quality"].format("✅")
+                if medium == True
+                else _["Medium Quality"].format(""),
+                callback_data="MQA",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["High Quality"].format("✅")
+                if high == True
+                else _["High Quality"].format(""),
+                callback_data="HQA",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["⬅️ Back"],
+                callback_data="cbmenu",
+            ),
+            InlineKeyboardButton(
+                text=_["Close 🗑️"], callback_data="cls"
+            ),
+        ],
+    ]
+    return buttons
 
 audio_keyboard = InlineKeyboardMarkup(
     [
@@ -211,7 +252,7 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Sound 🔊", callback_data=f"cbaudio"),
+            InlineKeyboardButton(text="Sound 🔊", callback_data=f"audio"),
              InlineKeyboardButton(text="Support 🙋🏻‍♂️", callback_data=f"cbsupport"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
@@ -222,6 +263,16 @@ menu_keyboard = InlineKeyboardMarkup(
     ]
 )
 
+
+@Client.on_callback_query(filters.regex("audio"))
+async def gen_buttons_aud(_, aud):
+    if aud == "High":
+        buttons = audio_quality_markup(_, high=True)
+    elif aud == "Medium":
+        buttons = audio_quality_markup(_, medium=True)
+    elif aud == "Low":
+        buttons = audio_quality_markup(_, low=True)
+    return buttons
 
 
 
