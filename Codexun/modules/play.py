@@ -695,58 +695,79 @@ async def cbaudio(_, query: CallbackQuery):
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
 
-@Client.on_callback_query(filters.regex("high"))
-async def highaudio(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
-    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
-    if not a.can_manage_voice_chats:
-        return await query.answer("Only admins cam use this..!", show_alert=True)
-    chat_id = query.message.chat.id
-    if is_music_playing(chat_id):
-          await query.edit_message_text(
-              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
 
-              reply_markup=highquality_keyboard
-         )
+@Client.on_callback_query(filters.regex("high"))
+async def high(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
+    if not a.can_manage_voice_chats:
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
+        try:
+            
+        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
+        reply_markup=highquality_keyboard
+    )
     else:
-        await query.answer("nothing is currently streaming", show_alert=True)
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
+
 
 @Client.on_callback_query(filters.regex("low"))
-async def lowaudio(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
-    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+async def low(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
     if not a.can_manage_voice_chats:
-        return await query.answer("Only admins cam use this..!", show_alert=True)
-    chat_id = query.message.chat.id
-    if is_music_playing(chat_id):
-          await query.edit_message_text(
-              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
-
-              reply_markup=lowquality_keyboard
-         )
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
+        try:
+            
+        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
+        reply_markup=lowquality_keyboard
+    )
     else:
-        await query.answer("nothing is currently streaming", show_alert=True)
-
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
 @Client.on_callback_query(filters.regex("medium"))
-async def mediumaudio(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
-    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
+async def medium(_, CallbackQuery):
+    a = await app.get_chat_member(
+        CallbackQuery.message.chat.id, CallbackQuery.from_user.id
+    )
     if not a.can_manage_voice_chats:
-        return await query.answer("Only admins cam use this..!", show_alert=True)
-    chat_id = query.message.chat.id
-    if is_music_playing(chat_id):
-          await query.edit_message_text(
-              f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality at {query.message.chat.title}.",
-
-              reply_markup=mediumquality_keyboard
-         )
+        return await CallbackQuery.answer(
+            "Only admin with manage voice chat permission can do this.",
+            show_alert=True,
+        )
+    CallbackQuery.from_user.first_name
+    chat_id = CallbackQuery.message.chat.id
+    if await is_active_chat(chat_id):
+        
+        try:
+            
+        await CallbackQuery.answer("Db cleaned successfully!", show_alert=True)
+        await CallbackQuery.edit_message_text(
+        f"**Manage Audio Quality 🔊**\n\nChoose your option from given below to manage audio quality.",
+        reply_markup=mediumquality_keyboard
+    )
     else:
-        await query.answer("nothing is currently streaming", show_alert=True)
-
+        await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
 @Client.on_callback_query(filters.regex("dbconfirm"))
 async def dbconfirm(_, query: CallbackQuery):
