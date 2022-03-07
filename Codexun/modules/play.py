@@ -100,8 +100,21 @@ def time_to_seconds(time):
     return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
+def truncate(text):
+    list = text.split(" ")
+    text1 = ""
+    text2 = ""    
+    for i in list:
+        if len(text1) + len(i) < 27:        
+            text1 += " " + i
+        elif len(text2) + len(i) < 25:        
+            text2 += " " + i
 
-    # Change image size
+    text1 = text1.strip()
+    text2 = text2.strip()     
+    return [text1,text2]
+
+# Change image size
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
@@ -109,9 +122,6 @@ def changeImageSize(maxWidth, maxHeight, image):
     newHeight = int(heightRatio * image.size[1])
     newImage = image.resize((newWidth, newHeight))
     return newImage
-
-
-
 
 
 async def generate_cover(requested_by, title, views, duration, thumbnail):
@@ -122,44 +132,59 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.write(await resp.read())
                 await f.close()
 
-    image1 = Image.open("./background.png")
-    image2 = Image.open("etc/foreground.png")
-    image1 = image1.filter(ImageFilter.BoxBlur(5))
-    image3 = changeImageSize(1280, 720, image1)
-    image4 = changeImageSize(1280, 720, image2)
-    image5 = image3.convert("RGBA")
-    image6 = image4.convert("RGBA")
-    Image.alpha_composite(image5, image6).save("temp.png")
-    img = Image.open("temp.png")
-    draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/Codexun.otf", 90)
-    draw.text((90, 400),
-        f"{title}..",
-        (255, 255, 255),
-        font=font,
-    )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
-    draw.text((90, 490),
-        f"Views : {views}",
-        (255, 255, 255),
-        font=font,
-    )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
-    draw.text((90, 542),
-        f"Duration : {duration} minutes",
-        (255, 255, 255),
-        font=font,
-    )
-    font = ImageFont.truetype("etc/Mukta-ExtraBold.ttf", 45)
-    draw.text((90, 590),
-        f"Request : Resso Music Bot",
-        (255, 255, 255),
-        font=font,
-    )
-    img.save("final.png")
-    os.remove("temp.png")
-    os.remove("background.png")
+    image = Image.open(f"./background.png")
+    black = Image.open("etc/black.jpg")
+    img = Image.open("etc/CodexunSq.png")
+    image5 = changeImageSize(1280, 720, img)
+    image1 = changeImageSize(1280, 720, image)
+    image1 = image1.filter(ImageFilter.BoxBlur(10))
+    image11 = changeImageSize(1280, 720, image)
+    image1 = image11.filter(ImageFilter.BoxBlur(10))
+    image2 = Image.blend(image1,black,0.6)
+
+    # Cropping circle from thubnail
+    image3 = image11.crop((280,0,1000,720))
+    #lum_img = Image.new('L', [720,720] , 0)
+   # draw = ImageDraw.Draw(lum_img)
+   # draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+   # img_arr =np.array(image3)
+    #lum_img_arr =np.array(lum_img)
+    #final_img_arr = np.dstack((img_arr,lum_img_arr))
+    #image3 = Image.fromarray(final_img_arr)
+    image3 = image3.resize((500,500))
     
+
+    image2.paste(image3, (100,115))
+    image2.paste(image5, mask = image5)
+
+    # fonts
+    font1 = ImageFont.truetype(r'etc/Codexun.otf', 30)
+    font2 = ImageFont.truetype(r'etc/Codexun.otf', 60)
+    font3 = ImageFont.truetype(r'etc/Codexun.otf', 49)
+    font4 = ImageFont.truetype(r'etc/Mukta-ExtraBold.ttf', 35)
+
+    image4 = ImageDraw.Draw(image2)
+
+    # title
+    title1 = truncate(title)
+    image4.text((670, 280), text=title1[0], fill="white", font = font3, align ="left") 
+    image4.text((670, 332), text=title1[1], fill="white", font = font3, align ="left") 
+
+    # description
+    views = f"Views : {views}"
+    duration = f"Duration : {duration} minutes"
+    channel = f"Request : Resso Music Bot"
+
+    image4.text((670, 410), text=views, fill="white", font = font4, align ="left") 
+    image4.text((670, 460), text=duration, fill="white", font = font4, align ="left") 
+    image4.text((670, 510), text=channel, fill="white", font = font4, align ="left")
+
+    
+    image2.save(f"final.png")
+    os.remove(f"background.png")
+    final = f"temp.png"
+    return final
+     
 
 
 def others_markup(videoid, user_id):
@@ -176,18 +201,6 @@ def others_markup(videoid, user_id):
     ]
     return buttons
 
-audio_keyboard = InlineKeyboardMarkup(
-    [
-        [
-            
-            InlineKeyboardButton("Manage Volume", callback_data="fifth"),],
-         [   InlineKeyboardButton("Audio Quality", callback_data="high"),
-            
-        ],[
-            InlineKeyboardButton(text="⬅️ Back", callback_data=f"cbmenu"),
-        ],
-    ]
-)
 
 fifth_keyboard = InlineKeyboardMarkup(
     [
@@ -366,8 +379,8 @@ menu_keyboard = InlineKeyboardMarkup(
             InlineKeyboardButton("▢", callback_data="stopvc"),
             
         ],[
-            InlineKeyboardButton(text="Audio", callback_data=f"cbaudio"),
-             InlineKeyboardButton(text="About", callback_data=f"cbsupport"),
+            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
+             InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
              InlineKeyboardButton(text="Language", callback_data=f"vlm"),
@@ -593,7 +606,7 @@ This bot helps you to play music, to search music from youtube and to download m
 @Client.on_callback_query(filters.regex("grpabout"))
 async def grpabout(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**Make Your Own 💡**
+        f"""**About Section 💡**
 
 Here is the about section for contact bot owner and for making your own bot like this !
 
@@ -608,7 +621,7 @@ Here is the about section for contact bot owner and for making your own bot like
 @Client.on_callback_query(filters.regex("cbmakeur"))
 async def cbmakeur(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**About Section 💡**
+        f"""**Make Your Own Bot 🤖**
 
 About to making your own bot like this, Tutorial Soon available at @Codexun and source code of bot also.
 
@@ -616,7 +629,8 @@ About to making your own bot like this, Tutorial Soon available at @Codexun and 
         reply_markup=InlineKeyboardMarkup(
             [
             
-            [InlineKeyboardButton("⬅️ Back", callback_data="cbmenu")]]
+            [InlineKeyboardButton("⬅️ Back", callback_data="grpabout")],
+            [InlineKeyboardButton("🗑️ Close Menu", callback_data="cls")]]
         ),
     )
 
@@ -786,23 +800,6 @@ async def cbmenu(_, query: CallbackQuery):
     else:
         await query.answer("nothing is currently streaming", show_alert=True)
 
-
-@Client.on_callback_query(filters.regex("cbaudio"))
-async def cbaudio(_, query: CallbackQuery):
-    if query.message.sender_chat:
-        return await query.answer("you're an Anonymous Admin !\n\n» revert back to user account from admin rights.")
-    a = await _.get_chat_member(query.message.chat.id, query.from_user.id)
-    if not a.can_manage_voice_chats:
-        return await query.answer("Only admins cam use this..!", show_alert=True)
-    chat_id = query.message.chat.id
-    if is_music_playing(chat_id):
-          await query.edit_message_text(
-              f"**Manage Audio 🔊**\n\nChoose your option from given below to manage audio at {query.message.chat.title}.",
-
-              reply_markup=audio_keyboard
-         )
-    else:
-        await query.answer("nothing is currently streaming", show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("high"))
@@ -1142,7 +1139,7 @@ async def play(_, message: Message):
         try:
             results = YoutubeSearch(url, max_results=1).to_dict()
             # print results
-            title = results[0]["title"][:18]
+            title = results[0]["title"]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -1267,7 +1264,7 @@ async def play(_, message: Message):
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print results
-            title = results[0]["title"][:18]
+            title = results[0]["title"]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -1370,7 +1367,7 @@ async def play(_, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**Downloaded Successfully**\n\n**{title[:50]}...\n\n**FileSize:** `{size}`\n■■■■■■■■■■ `100%`\n**Time Taken:** `{taken} sec`\n\n<b>__FFmpeg processing...__</b>"
+                    f"**Downloaded Successfully**\n\n**{title[:50]}...\n\n**FileSize: {size}**\n■■■■■■■■■■ `100%`\n**Time Taken: {taken} sec**\n\n<b>__FFmpeg processing...__</b>"
                 )
                 print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
@@ -1400,7 +1397,7 @@ async def play(_, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "**Error ! Make sure Voice Chat is Enabled.**"
+                "**Error ! Make sure Voice Chat is Enabled.**\n\nIf Voice chat is enabled :- then report this error at **@TeamCodexun** with our admins."
             )
 
         await music_on(message.chat.id)
@@ -1415,15 +1412,3 @@ async def play(_, message: Message):
 
     os.remove("final.png")
     return await lel.delete()
-
-
-
-
-#Pavan Nub
-#Aayu Pro
-#Vplay Added By Aayu
-#Pavan Noob 
-#Aayu Op 
-#Video Play Added By Aayu 
-#Op_Aayu Pero
-#Crator_Pavan Nub
