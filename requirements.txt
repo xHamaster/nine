@@ -25,3 +25,7 @@ youtube-search
 yt-dlp
 telegraph
 html5lib
+telethon
+psycopg2-binary
+feedparser
+requests
