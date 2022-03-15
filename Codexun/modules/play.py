@@ -391,38 +391,18 @@ menu_keyboard = InlineKeyboardMarkup(
 )
 
 
+@Client.on_callback_query(filters.regex("playlist"))
+async def cberror(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Currentlly Streaming 📖**
 
+**Name : {title}**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+              [InlineKeyboardButton("🔙  Back Home", callback_data="cls")]]
+        ),
+    )
 
-@Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
-async def p_cb(b, cb):
-    global que
-    que.get(cb.message.chat.id)
-    type_ = cb.matches[0].group(1)
-    cb.message.chat.id
-    cb.message.chat
-    cb.message.reply_markup.inline_keyboard[1][0].callback_data
-    if type_ == "playlist":
-        queue = que.get(cb.message.chat.id)
-        if not queue:
-            await cb.message.edit("Player is idle")
-        temp = []
-        for t in queue:
-            temp.append(t)
-        now_playing = temp[0][0]
-        by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(cb.message.chat.title)
-        msg += "\n- " + now_playing
-        msg += "\n- Req by " + by
-        temp.pop(0)
-        if temp:
-            msg += "\n\n"
-            msg += "**Queue**"
-            for song in temp:
-                name = song[0]
-                usr = song[1].mention(style="md")
-                msg += f"\n- {name}"
-                msg += f"\n- Req by {usr}\n"
-        await cb.message.edit(msg)
 
 
 @Client.on_message(command(["menu", "settings"]) & ~filters.edited)
