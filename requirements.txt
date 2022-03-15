@@ -14,7 +14,7 @@ pillow
 psutil
 python-dotenv
 pyromod
-py-tgcalls
+py-tgcalls==0.8.6
 requests
 search-engine-parser
 tgcrypto
