@@ -1131,7 +1131,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Update 📢", callback_data="playlist"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1172,7 +1172,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Update 📢", callback_data="playlist"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1304,7 +1304,7 @@ async def play(_, message: Message):
         
        [
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Update 📢", callback_data="playlist"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
