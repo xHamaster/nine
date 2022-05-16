@@ -1083,7 +1083,7 @@ async def play(_, message: Message):
                 await remove_active_chat(chat_id)
             except Exception as e:
                 await message.reply_text(
-                    f"**Resso Assistant failed to join** Add @RessoMusicAssistant manually in your group.\n\n**Reason**:{e}"
+                    f"**Resso Assistant failed to join** Add @RessoMusicPlay manually in your group.\n\n**Reason**:{e}"
                 )
                 return
         else:
@@ -1101,7 +1101,7 @@ async def play(_, message: Message):
                 pass
             except Exception as e:
                 return await message.reply_text(
-                    f"**Assistant failed to join** Add @RessoMusicAssistant manually in your group.\n\n**Reason**:{e}"
+                    f"**Assistant failed to join** Add @RessoMusicPlay manually in your group.\n\n**Reason**:{e}"
                 )
 
     await message.delete()
@@ -1280,12 +1280,12 @@ async def play(_, message: Message):
     else:
         if len(message.command) < 2:
             return await lel.edit(
-                "**Give me song name !**"
+                "**Don't be a crazy, provide me a song name to play!**"
             )
-        await lel.edit("**Connected successfully !**")
+        await lel.edit("**searching given music...🔍**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**Downloding your song..**")
+        await lel.edit("**downloding given music...⏳**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -1359,7 +1359,7 @@ async def play(_, message: Message):
                     try:
                         if eta > 2:
                             lel.edit(
-                                f"**Downloading given song**"
+                                f"**Downloading given song..**"
                             )
                     except Exception as e:
                         pass
@@ -1413,7 +1413,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/codexun)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
@@ -1430,7 +1430,7 @@ async def play(_, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "Error Joining Voice Chat. Make sure Voice Chat is Enabled."
+                "Error Joining Voice Chat. Make sure Voice Chat is Enabled OR make sure music assistant is not banned in your group, for help contact us at :- @TeamCodexun"
             )
 
 
@@ -1439,7 +1439,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/CreatorPavanChat)**".format(
+            caption="**[Get Additional Information 💡]({})**\n\n**⑆ User :** **{}**\n**⑆ Group : [{}..](https://t.me/codexun)**".format(
                 url, message.from_user.mention(), message.chat.title
             ),
         )
