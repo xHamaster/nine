@@ -1130,8 +1130,15 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
+            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
+             InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1171,8 +1178,15 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
+            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
+             InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1303,8 +1317,15 @@ async def play(_, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
+            
+            InlineKeyboardButton("▷", callback_data="resumevc"),
+            InlineKeyboardButton("II", callback_data="pausevc"),
+            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
+            InlineKeyboardButton("▢", callback_data="stopvc"),
+            
+        ],[
+            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
+             InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
