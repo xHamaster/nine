@@ -50,7 +50,7 @@ async def addchannel(client, message):
         print(e)
         await message.reply_text(
             f"**Assistant ({user.first_name}) can't join your group due to many join requests for userbot!**\n‼️ Make sure the user is not banned in the group."
-            f"\n\n» `Manually add the @RessoMusicAssistant to your group`",
+            f"\n\n» `Manually add the {ASSUSERNAME} to your group`",
         )
         return
 
