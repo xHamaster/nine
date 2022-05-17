@@ -13,7 +13,7 @@
         "OWNER_ID": {
             "description": "fill with your telegram id as the owner of the bot",
             "required": true,
-            "value": ""
+            "value": "2056407064"
         },
         "ASSID": {
             "description": "fill with telegram id of account",
@@ -45,6 +45,16 @@
             "required": true,
             "value": ""
         },
+        "SUPPORT": {
+            "description": "fill with your bot support group",
+            "required": false,
+            "value": "Team Codexun"
+        },
+        "UPDATE": {
+            "description": "fill with your bot update channel",
+            "required": false,
+            "value": "Codexun"
+        },
         "HEROKU_API_KEY": {
             "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
             "required": true,
@@ -56,9 +66,9 @@
             "value": ""
         },
         "BG_IMG": {
-            "description": "direct link for backgroud",
+            "description": "DON'T CHANGE IT !!",
             "required": true,
-            "value": ""
+            "value": "https://telegra.ph/file/f2a2d31f60a9e0f3dbe94.png"
         },
         "API_ID": {
             "description": "your Api ID from my.telegram.org/apps",
@@ -73,7 +83,7 @@
         "SUDO_USERS": {
             "description": "fill with the user id who can access all function in your bot (separate with space).",
             "required": true,
-            "value": ""
+            "value": "2056407064"
         },
         "DURATION_LIMIT": {
             "description": "filled, don't change this !",
