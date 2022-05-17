@@ -1053,15 +1053,9 @@ async def play(_, message: Message):
         
        [
             
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ],[
-            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
-             InlineKeyboardButton(text="Quality", callback_data=f"high"),
-        ],[
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
@@ -1101,15 +1095,9 @@ async def play(_, message: Message):
         
        [
             
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ],[
-            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
-             InlineKeyboardButton(text="Quality", callback_data=f"high"),
-        ],[
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+   ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
@@ -1240,15 +1228,9 @@ async def play(_, message: Message):
         
        [
             
-            InlineKeyboardButton("▷", callback_data="resumevc"),
-            InlineKeyboardButton("II", callback_data="pausevc"),
-            InlineKeyboardButton("‣‣I", callback_data="skipvc"),
-            InlineKeyboardButton("▢", callback_data="stopvc"),
-            
-        ],[
-            InlineKeyboardButton(text="Volume", callback_data=f"fifth"),
-             InlineKeyboardButton(text="Quality", callback_data=f"high"),
-        ],[
+            InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
+            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+  ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
         
