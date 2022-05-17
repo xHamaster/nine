@@ -1,3 +1,7 @@
+## Disclaimer
+
+## Don't try to edit this file otherwise your bot will be crash.
+
 from os import getenv
 
 from dotenv import load_dotenv
@@ -22,9 +26,9 @@ MONGO_DB_URI = getenv("MONGO_DB_URI")
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 OWNER_ID = int(getenv("OWNER_ID"))
-UPDATE = getenv("UPDATE", "UserLazyXBot")
-SUPPORT = getenv("SUPPORT", "OdaSupport")
-DURATION_LIMIT = int(getenv("DURATION_LIMIT", "10"))
+UPDATE = getenv("UPDATE", "Codexun")
+SUPPORT = getenv("SUPPORT", "TeamCodexun")
+DURATION_LIMIT = int(getenv("DURATION_LIMIT", "100"))
 CMD_MUSIC = list(getenv("CMD_MUSIC", "/ !").split())
 BG_IMG = getenv("BG_IMG")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
