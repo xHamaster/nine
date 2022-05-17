@@ -11,7 +11,7 @@ from Codexun.tgcalls import client as USER
 
 
 @app.on_message(
-    command(["userbotjoin", "odajoin", "oj"]) & ~filters.private & ~filters.bot
+    command(["userbotjoin"]) & ~filters.private & ~filters.bot
 )
 @errors
 async def addchannel(client, message):
@@ -55,7 +55,7 @@ async def addchannel(client, message):
         return
 
 
-@USER.on_message(filters.group & command(["userbotleave", "odaleave", "odaleft"]))
+@USER.on_message(filters.group & command(["userbotleave"]))
 async def rem(USER, message):
     if message.sender_chat:
         return await message.reply_text(
