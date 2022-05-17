@@ -63,6 +63,7 @@ from Codexun.config import (
     UPDATE,
     BOT_NAME,
     BOT_USERNAME,
+    OWNER_ID,
 )
 from Codexun.utils.filters import command
 from Codexun.utils.decorators import errors, sudo_users_only
@@ -384,7 +385,7 @@ menu_keyboard = InlineKeyboardMarkup(
              InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
-             InlineKeyboardButton(text="Language", callback_data=f"vlm"),
+             InlineKeyboardButton(text="Owner", user_id={OWNER_ID}),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
@@ -596,7 +597,12 @@ This bot helps you to play music, to search music from youtube and to download m
 
 **Thanks !**""",
         reply_markup=InlineKeyboardMarkup(
-            [
+            [[
+                    InlineKeyboardButton(
+                        "Assistant", user_id={ASSID}),
+                    InlineKeyboardButton(
+                        "Support", url=f"https://t.me/{SUPPORT})
+                ],
             [InlineKeyboardButton("Contact Owner", user_id={OWNER_ID})],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
