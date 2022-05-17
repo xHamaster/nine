@@ -1,3 +1,5 @@
+## © copyright team codexun
+
 import asyncio
 import importlib
 from pyrogram import Client
