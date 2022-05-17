@@ -553,7 +553,7 @@ async def cleandb(_, CallbackQuery):
 @Client.on_callback_query(filters.regex("cbcmnds"))
 async def cbcmnds(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""**{BOT_NAME} Commands 💡**
+        f"""**{BOT_NAME} Bot Commands 💡**
 
 
 • /play (song name) 
@@ -599,11 +599,10 @@ This bot helps you to play music, to search music from youtube and to download m
         reply_markup=InlineKeyboardMarkup(
             [[
                     InlineKeyboardButton(
-                        "Assistant", user_id={ASSID}),
+                        "Assistant", url=f"https://t.me/{ASSUSERNAME}"),
                     InlineKeyboardButton(
                         "Support", url=f"https://t.me/{SUPPORT}")
                 ],
-            [InlineKeyboardButton("Contact Owner", user_id={OWNER_ID})],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
@@ -1060,7 +1059,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
 ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1102,7 +1101,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
    ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1198,10 +1197,10 @@ async def play(_, message: Message):
             return await lel.edit(
                 "**Don't be a crazy, provide me a song name to play!\n\nExample :\n/play hamnawa mere**"
             )
-        await lel.edit("**searching given music...🔍**")
+        await lel.edit("**searching given music...**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**downloding given music...⏳**")
+        await lel.edit("**downloding given music...**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -1235,7 +1234,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Owner 👨🏻‍💻", user_id={OWNER_ID}),
+            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
   ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
