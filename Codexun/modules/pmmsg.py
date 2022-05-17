@@ -8,5 +8,5 @@ from Codexun.config import (
 
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
-  await USER.send_message(message.chat.id,"Hey, this is the assistant of {BOT_USERNAME}\n\n If you want to make your own music bot then contact us at @TeamCodexun.")
+  await USER.send_message(message.chat.id,"Hey, this is the assistant of music bot, if you want to make your own music bot then visit at @TeamCodexun and contact us!\n\nPowered by@Codexun")
   return
