@@ -1,3 +1,5 @@
+## © copyright team codexun
+
 from os import listdir, mkdir
 from pyrogram import Client
 from Codexun import config
