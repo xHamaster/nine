@@ -197,7 +197,7 @@ def others_markup(videoid, user_id):
             InlineKeyboardButton(text="‣‣I", callback_data=f"skipvc"),
             InlineKeyboardButton(text="▢", callback_data=f"stopvc"),
         ],[
-            InlineKeyboardButton(text="Fuck", callback_data=f"cls"),
+            InlineKeyboardButton(text="© copyright team codexun", callback_data=f"cls"),
         ],
         
     ]
@@ -614,11 +614,28 @@ This bot helps you to play music, to search music from youtube and to download m
                         "Assistant", url=f"https://t.me/{ASSUSERNAME}"),
                     InlineKeyboardButton(
                         "Support", url=f"https://t.me/{SUPPORT}")
-                ],
+                ],[InlineKeyboardButton("Make Your Own Bot", callback_data="makeown")],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
         ),
     )
 
+@Client.on_callback_query(filters.regex("makeown"))
+async def cbabout(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**Make Your Own Bot 💡**
+
+Good news! Now you can allow to make your own music bot like to this one. You will be get repo link below just click on it and follow steps!
+
+If you didn't know how to make your own bot then contact us at @TeamCodexun and get help from us.
+
+🔗 Repo Link : https://github.com/PavanMagar/CodexunMusic
+
+**Thanks !**""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("🔙  Back Home", callback_data="cbabout")]]
+        ),
+    )
 
 @Client.on_callback_query(filters.regex("cbstgs"))
 async def cbstgs(_, query: CallbackQuery):
@@ -1212,7 +1229,7 @@ async def play(_, message: Message):
         await lel.edit("**searching given music...**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**downloding given music...**")
+        await lel.edit("**started downloading process...**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
