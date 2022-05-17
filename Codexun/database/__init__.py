@@ -1,3 +1,5 @@
+## © copyright team codexun
+
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from Codexun.config import MONGO_DB_URI
 
