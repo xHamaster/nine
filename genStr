@@ -6,4 +6,4 @@
 # and is released under the "GNU v3.0 License Agreement".
 # All rights reserved.
 
-exec python3 tools/genStrSession.py
+exec python3
