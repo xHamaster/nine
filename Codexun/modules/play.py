@@ -601,7 +601,7 @@ This bot helps you to play music, to search music from youtube and to download m
                     InlineKeyboardButton(
                         "Assistant", user_id={ASSID}),
                     InlineKeyboardButton(
-                        "Support", url=f"https://t.me/{SUPPORT})
+                        "Support", url=f"https://t.me/{SUPPORT}")
                 ],
             [InlineKeyboardButton("Contact Owner", user_id={OWNER_ID})],
             [InlineKeyboardButton("🔙  Back Home", callback_data="cbhome")]]
