@@ -175,7 +175,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     # description
     views = f"Views : {views}"
     duration = f"Duration : {duration} minutes"
-    channel = f"Request : Resso Music Bot"
+    channel = f"Request : {BOT_NAME}"
 
     image4.text((670, 410), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 460), text=duration, fill="white", font = font4, align ="left") 
@@ -385,7 +385,7 @@ menu_keyboard = InlineKeyboardMarkup(
              InlineKeyboardButton(text="Quality", callback_data=f"high"),
         ],[
             InlineKeyboardButton(text="CleanDB", callback_data=f"dbconfirm"),
-             InlineKeyboardButton(text="Owner", user_id={OWNER_ID}),
+             InlineKeyboardButton(text="About", callback_data=f"grpabout"),
         ],[
              InlineKeyboardButton(text="🗑️ Close Menu", callback_data=f"cls"),
         ],
@@ -549,6 +549,18 @@ async def cleandb(_, CallbackQuery):
     else:
         await CallbackQuery.answer(f"Nothing is playing on voice chat.", show_alert=True)
 
+@Client.on_callback_query(filters.regex("grpabout"))
+async def grpabout(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""**About {BOT_NAME}💡**
+Here is the about section for bot support and updates, you can join below for staying up to date about this bot!""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+            [InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}")],
+            [InlineKeyboardButton("Updates 🤖", url=f"https://t.me/{UPDATE}")],
+            [InlineKeyboardButton("🗑️ Close Menu", callback_data="cls")]]
+        ),
+    )
 
 @Client.on_callback_query(filters.regex("cbcmnds"))
 async def cbcmnds(_, query: CallbackQuery):
@@ -1059,7 +1071,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
 ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1101,7 +1113,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
    ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
@@ -1234,7 +1246,7 @@ async def play(_, message: Message):
        [
             
             InlineKeyboardButton("⚙️ Manage", callback_data="cbmenu"),
-            InlineKeyboardButton("Support 👨🏻‍💻", url=f"https://t.me/{SUPPORT}"),
+            InlineKeyboardButton("About 👨🏻‍💻", callback_data="grpabout"),
   ],[
             InlineKeyboardButton("Close 🗑️", callback_data="cls"),
         ],
